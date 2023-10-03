@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,7 @@
   <div class="adbody">
       <div class="adtitle">ADMINISTRATOR</div>
       <div class="admoom">
-        <form id="member_log" name="member_log">
+        <form id="member_log" name="member_log" method="post" action="../adminMain">
           <div class="intotal"> 
             <div class="adin1">
               <input type="text" name="login_id" id="login_id" class="loginid" value="" placeholder=" 아이디">
@@ -34,5 +36,5 @@
         </div>
       </div>
     </body>
-    <script src="./js/page_result.js?v=<?php echo $daterecall?>"></script>
+    <script src="./js/page_result.js?v=1"></script>
     </html>
