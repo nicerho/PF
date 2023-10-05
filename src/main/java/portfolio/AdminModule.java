@@ -37,15 +37,12 @@ public class AdminModule {
 		return ad;
 	}
 
-	public String idCheck(String aid) {
-		AdminDTO ad = null;
+	public String idCheck(String aid, AdminDTO ad) {
 		try {
 			ad = sqlsession.selectOne("pfDB.login", aid);
 		} catch (Exception e) {
-			if(ad.getAid()==null) {
-				return "Y";
-			}
+
 		}
-		return "N";
+		return "";
 	}
 }

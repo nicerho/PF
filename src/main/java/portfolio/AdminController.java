@@ -31,9 +31,9 @@ public class AdminController {
 		return "/index";
 	}
 	@PostMapping("/idCheck")
-	public String idCheck(@RequestParam(required=false) String aid) {
+	public String idCheck(@RequestParam(required=false) String aid,AdminDTO ad) {
 		System.out.println(aid);
-		String idck = adminModule.idCheck(aid);
+		String idck = adminModule.idCheck(aid,ad);
 		return idck;
 	}
 }
