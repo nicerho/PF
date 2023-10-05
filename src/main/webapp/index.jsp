@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./css/admin_css.css?v=2023090212">
+<link rel="stylesheet" href="./css/admin_css.css?v=2023090211">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
 <title>관리자 페이지</title>
 </head>
@@ -12,7 +12,7 @@
   <div class="adbody">
       <div class="adtitle">ADMINISTRATOR</div>
       <div class="admoom">
-        <form id="member_log" name="member_log" method="post" action="../adminMain">
+        <form id="member_log" name="member_log" method="post" action="./adminMain">
           <div class="intotal"> 
             <div class="adin1">
               <input type="text" name="login_id" id="login_id" class="loginid" value="" placeholder=" 아이디">

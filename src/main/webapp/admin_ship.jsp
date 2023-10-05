@@ -9,7 +9,7 @@
 <title>관리자 페이지</title>
 </head>
 <body>
-    <form id="f" name="" method="post" action="../adminSubmit">
+    <form id="f" name="" method="post" action="./adminSubmit">
         <div class="membody">
            <div class="adtitle">ADMINISTRATOR MEMBERSHIP</div>
            <div class="memoutline" >
@@ -77,7 +77,7 @@
                 <ul>
                     <li class="memfont">아이디</li>
                     <li><input type="text" class="admamber2" id="aid" name="aid" value="" placeholder="아이디를 입력해 주세요"></li>
-                    <li><span class="idcheck" id="idck" name="" value="" onclick="idCheck()">중복체크</span></li>
+                    <li><span class="idcheck" id="idck" name="" value="" >중복체크</span></li>
                 </ul>    
               </div>
               <div class="memsel2">
@@ -121,44 +121,5 @@
        </div>
     </form> 
 </body>
-<!-- <script src="./js/adm_btn.js?v=20230903"></script> -->
-<script>
-let adnum = document.querySelector("#adm1").value
-let adnum2 = document.querySelector("#adm2").value
-let adnum3 = document.querySelector("#adm3").value
-function idCheck(){
-	var id = document.getElementById("id");
-	if (id.value == "") {
-		alert("ID입력은 필수")
-	} else {
-		var http = new XMLHttpRequest();
-		http.onreadystatechange = function() {
-			if (http.readyState == XMLHttpRequest.DONE
-					&& http.status == 200) {
-				var result = this.response;
-				//yes : 중복 no : 가능 error : 오류
-				if (result == "no") {
-					confirm("use?")
-				} else if (result == "yes") {
-					alert("현재 사용중인 아이디입니다")
-				}
-			}
-		}
-		http.open("post", "http://192.168.110.214:8080/batis/idcheck.do", true);//비동기통신
-		http.setRequestHeader("content-type",
-				"application/x-www-form-urlencoded");
-		http.send("userid=" + id.value);
-	}
-}
-document.querySelector("#adm_ok").addEventListener("click",function(){
-	let adnums = document.querySelector("#adnums")
-	adnums.value = document.querySelector("#adm1").value +document.querySelector("#adm2").value + document.querySelector("#adm3").value; 
-	if(document.querySelector("#apw").value != document.querySelector("#pwCheck").value){
-		alert("동일한 패스워드를 입력하세요")
-	}else{
-		f.submit();
-		console.log(adnums.value)
-	}
-})
-</script>
+<script src="./js/submit.js?v=1"></script>
 </html>
