@@ -95,4 +95,4 @@
  </div>
 </div>
 </form>
-<script src="./js/Config.js?v=8"></script>
+<script src="./js/Config.js?v=9"></script>

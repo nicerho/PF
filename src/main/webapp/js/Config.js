@@ -5,7 +5,7 @@ function select(val) {
 }
 
 document.querySelector("#depSelect").addEventListener("change", function() {
-	frm.submit();
+	//frm.submit();
 	fetch("./config", {
 		method: "POST",
 		cache: "no-cache",
@@ -14,10 +14,10 @@ document.querySelector("#depSelect").addEventListener("change", function() {
 		},
 		body: "depSelect=" + dep.value
 	}).then(function(response) {
-		
 		return response.text();
 	}).then(function(result) {
-		console.log(result)
+		document.querySelector("#webhtml").innerHTML = result; 
+		location.href="./config?depSelect="+dep.value;
 	}).catch(function(error) {
 		console.log("Data Error!!");
 	});
