@@ -1,5 +1,8 @@
 package portfolio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,7 +16,7 @@ public class AdminModule {
 	private SqlSessionTemplate sqlsession;
 	@Autowired
 	private BCryptPasswordEncoder bp;
-
+	
 	public int adminSubmit(String apw, AdminDTO ad) {
 		String pw = bp.encode(apw);
 		ad.setApw(pw);
@@ -37,12 +40,26 @@ public class AdminModule {
 		return ad;
 	}
 
-	public String idCheck(String aid, AdminDTO ad) {
-		try {
-			ad = sqlsession.selectOne("pfDB.login", aid);
-		} catch (Exception e) {
-
-		}
-		return "";
+	public AdminDTO idCheck(String aid) {
+		AdminDTO ad = sqlsession.selectOne("pfDB.login", aid);
+		return ad;
 	}
+	public List<AdminDTO> findAdminByDep(String dep){
+		List<AdminDTO> list = new ArrayList<>();
+		list = sqlsession.selectList("pfDB.findAdminByDep",dep);
+		return list;
+	}
+	public List<AdminDTO> selectAll(){
+		List<AdminDTO> list = sqlsession.selectList("pfDB.selectAll");
+		return list;
+	}
+	public List<AdminDTO> selectByDep(String depSelect){
+		List<AdminDTO> list = sqlsession.selectList("pfDB.findAdminByDep",depSelect);
+		return list;
+	}
+	public List<AdminDTO> selectByName(String search_part2){
+		List<AdminDTO> list = sqlsession.selectList("pfDB.selectByName",search_part2);
+		return list;
+	}
+	
 }

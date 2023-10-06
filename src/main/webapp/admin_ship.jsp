@@ -77,7 +77,7 @@
                 <ul>
                     <li class="memfont">아이디</li>
                     <li><input type="text" class="admamber2" id="aid" name="aid" value="" placeholder="아이디를 입력해 주세요"></li>
-                    <li><span class="idcheck" id="idck" name="" value="" >중복체크</span></li>
+                    <li><span class="idcheck" id="idck" name="" value="" >중복체크</span><span id="checkResult" value=""></span></li>
                 </ul>    
               </div>
               <div class="memsel2">
@@ -121,5 +121,5 @@
        </div>
     </form> 
 </body>
-<script src="./js/submit.js?v=1"></script>
+<script src="./js/submit.js?v=4"></script>
 </html>

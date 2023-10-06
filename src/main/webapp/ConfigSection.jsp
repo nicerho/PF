@@ -1,30 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<form id="frm" name="frm" method="post" onsubmit="return member_search();">    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<form id="frm" name="frm" method="post" action="./config">    
 <div class="listbody">
  <div class="adlisttitle">관리자 현황</div>
  <div class="procho">
     <ul>
         <li class="prochoL procfont">소속</li>
         <li class="prochoL ">
-            <select class="adlistcsel1">
-                <option value="">전체</option>
-                <option value="본사">본사</option>
-                <option value="경기도">경기도</option>
-                <option value="인천">인천</option>
-                <option value="대전">대전</option>
-                <option value="세종">세종</option>
-                <option value="광주">광주</option>
-                <option value="대구">대구</option>
-                <option value="울산">울산</option>
-                <option value="전라남도">전라남도</option>
-                <option value="전라북도">전라북도</option>
-                <option value="충청남도">충청남도</option>
-                <option value="충청북도">충청북도</option>
-                <option value="경상남도">경상남도</option>
-                <option value="경상북도">경상북도</option>
-                <option value="제주도">제주도</option>  
-            </select>
+            <select class="adlistcsel1" id="depSelect" name="depSelect" onchange="select(this.value)">
+                <option value="" <c:if test="${dep eq ''}">selected</c:if>>전체</option>
+                <option value="본사" <c:if test="${dep eq '본사'}">selected</c:if>>본사</option>
+                <option value="경기도" <c:if test="${dep eq '경기도'}">selected</c:if>>경기도</option>
+                <option value="인천" <c:if test="${dep eq '인천'}">selected</c:if>>인천</option>
+                <option value="대전" <c:if test="${dep eq '대전'}">selected</c:if>>대전</option>
+                <option value="세종" <c:if test="${dep eq '세종'}">selected</c:if>>세종</option>
+                <option value="광주" <c:if test="${dep eq '광주'}">selected</c:if>>광주</option>
+                <option value="대구" <c:if test="${dep eq '대구'}">selected</c:if>>대구</option>
+                <option value="울산" <c:if test="${dep eq '울산'}">selected</c:if>>울산</option>
+                <option value="전라남도" <c:if test="${dep eq '전라남도'}">selected</c:if>>전라남도</option>
+                <option value="전라북도" <c:if test="${dep eq '전라북도'}">selected</c:if>>전라북도</option>
+                <option value="충청남도" <c:if test="${dep eq '충청남도'}">selected</c:if>>충청남도</option>
+                <option value="충청북도" <c:if test="${dep eq '충청북도'}">selected</c:if>>충청북도</option>
+                <option value="경상남도" <c:if test="${dep eq '경상남도'}">selected</c:if>>경상남도</option>
+                <option value="경상북도" <c:if test="${dep eq '경상북도'}">selected</c:if>>경상북도</option>
+                <option value="제주도" <c:if test="${dep eq '제주도'}">selected</c:if>>제주도</option>  
+            </select>           
         </li>
     </ul>
  </div>
@@ -38,8 +39,8 @@
                 <option>연락처</option>
             </select>
         </li>
-        <li class="prochoL"><input type="text" class="adlistcsel1"></li>
-        <li class="prochoL"><input type="submit" class="proclick" value="검색"></li>
+        <li class="prochoL"><input type="text" class="adlistcsel1" name="search_part2"></li>
+        <li class="prochoL"><input type="submit" class="proclick" value="검색" id="partSearch"></li>
         <li class="prochoL"><button type="button" class="proclick" >전체</button></li>
     </ul>
  </div>
@@ -59,24 +60,28 @@
             </tr>
         </thead>
         <tbody>
+            <c:if test="${adminList==null}">
             <tr height="30"><td class="listcenter" colspan="9">등록된 관리자가 없습니다.</td></tr>
+            </c:if>
+            <c:forEach var="admin" items="${adminList}">
             <tr class="master_list">
-                <td class="listcenter" width=50></td>
-                <td class="listcenter" width=150></td>
-                <td class="listcenter" width=150></td>
-                <td class="listcenter" width=120></td>
-                <td class="listcenter" width=80></td>
-                <td class="listcenter" width=200></td>
-                <td class="listcenter" width=120></td>
-                <td class="listcenter" width=120>
-                    <select class="adlistsel3">
-                        <option>근무중</option>
-                        <option>퇴직중</option>
+                <td class="listcenter" width=50 >${admin.getAno()}</td>
+                <td class="listcenter" width=150>${admin.getAbranch()}</td>
+                <td class="listcenter" width=150>${admin.getAid()}</td>
+                <td class="listcenter" width=120>${admin.getAname()}</td>
+                <td class="listcenter" width=80>${admin.getApos()}</td>
+                <td class="listcenter" width=200>${admin.getAemail()}</td>
+                <td class="listcenter" width=120>${admin.getAtel()}</td>
+                <td class="listcenter" width=120>	
+                    <select class="adlistsel3" >            
+                        <option>근무중</option>                        
+                        <option <c:if test="${admin.getAuse()=='N'}">selected</c:if>>퇴직중</option>  
                     </select>
                 </td>
                 <td class="listcenter" width=110>
-                <button type="button" class="listclick" >적용</button></td>
+                <button type="button" class="listclick" onclick="saveChange()">적용</button></td>
             </tr>
+            </c:forEach>
         </tbody>
     </table>
  </div>
@@ -90,3 +95,4 @@
  </div>
 </div>
 </form>
+<script src="./js/Config.js?v=8"></script>

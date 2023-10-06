@@ -7,4 +7,13 @@
 	<select id="login" resultType="ad" parameterType="string">
 		select * from admin where aid=#{insertId}
 	</select>
+	<select id="findAdminByDep" resultType="ad" parameterType="string">
+		select * from admin where adep=#{adep} order by ano desc;
+	</select>
+	<select id="selectAll" resultType="ad">
+		select * from admin order by ano desc;
+	</select>
+	<select id="selectByName" resultType="ad" parameterType="string">
+		select * from admin where aname=#{aname} order by ano desc;
+	</select>
 </mapper>
