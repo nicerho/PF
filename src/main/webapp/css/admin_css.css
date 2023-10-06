@@ -88,7 +88,7 @@ a{text-decoration-line: none;} a:link {color : white; } a:visited {color : white
     border-bottom: 0px;
 }
 /*product_list , admin_list , delivery_list*/
-.listbody{width:1200px; text-align: center; margin-left:50px; height: auto;}
+.listbody{width:1200px; text-align: center; margin:0 auto; height: auto;}
 .protitle{width: 1200px; height: 60px; font-size:14px; margin:0 auto; text-align: left; line-height: 50px; font-weight: bold; text-decoration:underline; }
 .procho{width: 1200px; height: 30px; margin:0 auto; font-size: 12px; margin-bottom:10px;}
 .procho ul{list-style: none; -webkit-padding-start: 0px;}
