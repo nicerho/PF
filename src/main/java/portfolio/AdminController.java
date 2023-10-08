@@ -51,7 +51,7 @@ public class AdminController {
 		if (depSelect == null || depSelect == "") {
 			list = adminModule.selectAll();
 			model.addAttribute("adminList", list);
-			model.addAttribute("dep", "");		
+			model.addAttribute("dep", "");
 		} else {
 			list = adminModule.selectByDep(depSelect);
 			if (list.isEmpty() != true) {
@@ -63,9 +63,27 @@ public class AdminController {
 		}
 		return "/config_main";
 	}
-	@RequestMapping("/config/{search_part}/{search_part2}")
-	public String configSearch() {
-		
+
+	@RequestMapping("/adminSearch")
+	public String configSearch(Model model, String searchPart, String search_part) {
+		List<AdminDTO> list = null;
+		if (search_part.equals("이름")) {
+			list = adminModule.selectByName(searchPart);
+			model.addAttribute("adminList", list);
+			model.addAttribute("selected", search_part);
+		} else if (search_part.equals("아이디")) {
+			list = adminModule.selectById(searchPart);
+			model.addAttribute("adminList", list);
+			model.addAttribute("selected", search_part);
+		} else if (search_part.equals("연락처")) {
+			list = adminModule.selectByTel(searchPart);
+			model.addAttribute("adminList", list);
+			model.addAttribute("selected", search_part);
+		}
 		return "/config_main";
+	}
+	@PostMapping("/adminConfigChange")
+	public void configChange(String adminNumber,String adminUse) {
+		
 	}
 }

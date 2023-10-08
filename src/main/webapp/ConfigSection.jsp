@@ -33,14 +33,14 @@
     <ul>
         <li class="prochoL procfont">검색형식</li>
         <li class="prochoL ">
-            <select class="adlistcsel1" name="search_part">
-                <option>이름</option>
-                <option>아이디</option>
-                <option>연락처</option>
+            <select class="adlistcsel1" name="search_part" id="search_part" onchange="select2(this.value)">
+                <option <c:if test="${selected eq '이름'}">selected</c:if>>이름</option>
+                <option <c:if test="${selected eq '아이디'}">selected</c:if>>아이디</option>
+                <option <c:if test="${selected eq '연락처'}">selected</c:if>>연락처</option>
             </select>
         </li>
-        <li class="prochoL"><input type="text" class="adlistcsel1" name="search_part2"></li>
-        <li class="prochoL"><input type="submit" class="proclick" value="검색" id="partSearch"></li>
+        <li class="prochoL"><input type="text" class="adlistcsel1" id="searchPart"></li>
+        <li class="prochoL"><input type="submit" class="proclick" value="검색" id="searchPart2"></li>
         <li class="prochoL"><button type="button" class="proclick" >전체</button></li>
     </ul>
  </div>
@@ -64,7 +64,7 @@
             <tr height="30"><td class="listcenter" colspan="9">등록된 관리자가 없습니다.</td></tr>
             </c:if>
             <c:forEach var="admin" items="${adminList}">
-            <tr class="master_list">
+            <tr class="master_list" >
                 <td class="listcenter" width=50 >${admin.getAno()}</td>
                 <td class="listcenter" width=150>${admin.getAbranch()}</td>
                 <td class="listcenter" width=150>${admin.getAid()}</td>
@@ -73,13 +73,13 @@
                 <td class="listcenter" width=200>${admin.getAemail()}</td>
                 <td class="listcenter" width=120>${admin.getAtel()}</td>
                 <td class="listcenter" width=120>	
-                    <select class="adlistsel3" >            
+                    <select class="adlistsel3">            
                         <option>근무중</option>                        
                         <option <c:if test="${admin.getAuse()=='N'}">selected</c:if>>퇴직중</option>  
                     </select>
                 </td>
                 <td class="listcenter" width=110>
-                <button type="button" class="listclick" onclick="saveChange()">적용</button></td>
+                <button type="button" class="listclick" onclick="saveChange(${admin.getAno()})">적용</button></td>
             </tr>
             </c:forEach>
         </tbody>
@@ -95,4 +95,4 @@
  </div>
 </div>
 </form>
-<script src="./js/Config.js?v=9"></script>
+<script src="./js/Config.js?v=10"></script>

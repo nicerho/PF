@@ -57,9 +57,16 @@ public class AdminModule {
 		List<AdminDTO> list = sqlsession.selectList("pfDB.findAdminByDep",depSelect);
 		return list;
 	}
-	public List<AdminDTO> selectByName(String search_part2){
-		List<AdminDTO> list = sqlsession.selectList("pfDB.selectByName",search_part2);
+	public List<AdminDTO> selectByName(String searchPart){
+		List<AdminDTO> list = sqlsession.selectList("pfDB.selectByname",searchPart);
 		return list;
-	}
-	
+	}	
+	public List<AdminDTO> selectByTel(String searchPart){
+		List<AdminDTO> list = sqlsession.selectList("pfDB.selectByTel",searchPart);
+		return list;
+	}	
+	public List<AdminDTO> selectById(String searchPart){
+		List<AdminDTO> list = sqlsession.selectList("pfDB.selectById",searchPart);
+		return list;
+	}	
 }

@@ -16,4 +16,19 @@
 	<select id="selectByName" resultType="ad" parameterType="string">
 		select * from admin where aname=#{aname} order by ano desc;
 	</select>
+	<select id="selectByname" resultType="ad" parameterType="string">
+		select * from admin where aname like CONCAT('%',#{keyword},'%') order by ano desc;
+	</select>
+	<select id="selectByTel" resultType="ad" parameterType="string">
+		select * from admin where atel like CONCAT('%',#{keyword},'%') order by ano desc;
+	</select>
+	<select id="selectById" resultType="ad" parameterType="string">
+		select * from admin where aid like CONCAT('%',#{keyword},'%') order by ano desc;
+	</select>
+	<update id="changeAdminConfigToY" parameterType="string">
+		update admin set ause='Y' where ano=#{parameter}
+	</update>
+	<update id="changeAdminConfigToN" parameterType="string">
+		update admin set ause='N' where ano=#{parameter}
+	</update>
 </mapper>
