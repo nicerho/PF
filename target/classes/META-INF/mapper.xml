@@ -1,34 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pfDB">
+	<select id="countAdmin" parameterType="map" resultType="ad">
+		SELECT * FROM admin
+		LIMIT #{start}, #{pageSize}
+	</select>
+	<select id="countAdmins" resultType="int">
+		select count(*) from admin
+	</select>
+
 	<insert id="adminInsert">
-		insert into admin values('0',#{abranch},#{adep},#{apos},#{aid},#{aname},#{apw},#{aemail},#{atel},'Y',now());
+		insert into admin
+		values('0',#{abranch},#{adep},#{apos},#{aid},#{aname},#{apw},#{aemail},#{atel},'Y',now());
 	</insert>
 	<select id="login" resultType="ad" parameterType="string">
-		select * from admin where aid=#{insertId}
+		select * from
+		admin where aid=#{insertId}
 	</select>
-	<select id="findAdminByDep" resultType="ad" parameterType="string">
-		select * from admin where adep=#{adep} order by ano desc;
+	<select id="findAdminByDep" resultType="ad"
+		parameterType="string">
+		select * from admin where adep=#{adep} order by ano
+		desc;
 	</select>
 	<select id="selectAll" resultType="ad">
-		select * from admin order by ano desc;
+		select * from admin order by
+		ano desc;
 	</select>
 	<select id="selectByName" resultType="ad" parameterType="string">
-		select * from admin where aname=#{aname} order by ano desc;
+		select *
+		from admin where aname=#{aname} order by ano desc;
 	</select>
 	<select id="selectByname" resultType="ad" parameterType="string">
-		select * from admin where aname like CONCAT('%',#{keyword},'%') order by ano desc;
+		select *
+		from admin where aname like CONCAT('%',#{keyword},'%') order by ano
+		desc;
 	</select>
 	<select id="selectByTel" resultType="ad" parameterType="string">
-		select * from admin where atel like CONCAT('%',#{keyword},'%') order by ano desc;
+		select *
+		from admin where atel like CONCAT('%',#{keyword},'%') order by ano
+		desc;
 	</select>
 	<select id="selectById" resultType="ad" parameterType="string">
-		select * from admin where aid like CONCAT('%',#{keyword},'%') order by ano desc;
+		select *
+		from admin where aid like CONCAT('%',#{keyword},'%') order by ano
+		desc;
 	</select>
 	<update id="changeAdminConfigToY" parameterType="string">
-		update admin set ause='Y' where ano=#{parameter}
+		update admin set
+		ause='Y' where ano=#{parameter}
 	</update>
 	<update id="changeAdminConfigToN" parameterType="string">
-		update admin set ause='N' where ano=#{parameter}
+		update admin set
+		ause='N' where ano=#{parameter}
+	</update>
+	<insert id="noticeInsert">
+		insert into notice
+		values('0',#{ctitle},#{cwriter},#{csection},0,#{cfiledir},#{cfilename},now());
+	</insert>
+	  <select id="selectNoticeByPage" parameterType="map" resultType="nt">
+        SELECT * FROM notice
+        <where>
+            <if test="search != null and search != ''">
+                AND ctitle LIKE CONCAT('%', #{search}, '%')
+            </if>
+        </where>
+        ORDER BY cno DESC
+        LIMIT #{start}, #{pageSize}
+    </select>
+     <select id="countNotices" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM notice
+        <where>
+            <if test="search != null and search != ''">
+                AND ctitle LIKE CONCAT('%', #{search}, '%')
+            </if>
+        </where>
+    </select>
+    <delete id="deleteNotice">
+    delete from notice where cno=#{parameter}
+    </delete>
+    <select id="selectNoticeByCno" parameterType="string" resultType="nt">
+    select * from notice where cno=#{parameter}
+    </select>
+    <update id="chnageClicked" parameterType="string">
+		update notice set
+		cclicked=cclicked+1 where cno=#{parameter}
 	</update>
 </mapper>

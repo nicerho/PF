@@ -26,23 +26,22 @@ document.querySelector("#depSelect").addEventListener("change", function() {
 	});
 })
 
-function saveChange(val,val2) {
-	console.log(val+val2)
+function saveChange(val) {
+	console.log(document.querySelector("#use"+val).value)
+	console.log(val)
 	if(confirm("변경사항을 저장하시겠습니까?")){
-		fetch("./adminSearch", {
+		fetch("./adminConfigChange", {
 			method: "POST",
 			cache: "no-cache",
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded"
 			},
-			body: "searchPart=" + search.value + "&search_part=" + search2.value
+			body: "adminNumber=" + val + "&adminUse=" + document.querySelector("#use"+val).value
 		}).then(function(response) {
-			console.log(response)
+			alert("저장완료")
 			return response.text();
 		}).then(function(result) {
-			console.log(result)
-			document.querySelector("#webhtml").innerHTML = result;
-			location.href = "./adminSearch?searchPart=" + search.value + "&search_part=" + search2.value;
+			location.href = "./config"
 		}).catch(function(error) {
 			console.log("Data Error!!");
 		});
@@ -72,3 +71,5 @@ document.querySelector("#searchPart2").addEventListener("click", function() {
 	}
 
 })
+
+

@@ -332,7 +332,7 @@ em {
     height:40px;
 }
 
-.page_number > ul {
+/*.page_number > ul {
     width: 100%;
     height:inherit;
     display: flex;
@@ -349,5 +349,5 @@ em {
     margin-right: 5px;
     margin-left: 5px;
     cursor: pointer;
-}
+}*/
 

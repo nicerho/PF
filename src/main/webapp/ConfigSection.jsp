@@ -73,7 +73,7 @@
                 <td class="listcenter" width=200>${admin.getAemail()}</td>
                 <td class="listcenter" width=120>${admin.getAtel()}</td>
                 <td class="listcenter" width=120>	
-                    <select class="adlistsel3">            
+                    <select class="adlistsel3" id="use${admin.getAno()}">            
                         <option>근무중</option>                        
                         <option <c:if test="${admin.getAuse()=='N'}">selected</c:if>>퇴직중</option>  
                     </select>
@@ -87,11 +87,13 @@
  </div>
  
  <div class="propagebt">
-    <ul>
-        <li> < </li>
-        <li> 1</li>
-        <li style="margin-right: 0px;"> > </li>
-    </ul>
+     <ul>
+                <li><a href="?pageNumber=1">First</a></li>
+                <c:forEach begin="1" end="${totalPages}" var="page">
+                    <li><a href="?pageNumber=${page}">${page}</a></li>
+                </c:forEach>
+                <li><a href="?pageNumber=${totalPages}">Last</a></li>
+            </ul>
  </div>
 </div>
 </form>

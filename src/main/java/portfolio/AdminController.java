@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AdminController {
 
+
 	@Resource(name = "adminsubmit")
 	private AdminModule adminModule;
 
@@ -46,8 +47,14 @@ public class AdminController {
 	}
 
 	@RequestMapping("/config")
-	public String configPage(Model model, AdminDTO ad, @RequestParam(required = false) String depSelect) {
+	public String configPage(Model model, AdminDTO ad, @RequestParam(required = false) String depSelect,
+			@RequestParam(name = "pageNumber", defaultValue = "1") int pageNumber) {
 		List<AdminDTO> list = null;
+		int pageSize = 10; // 페이지 크기를 원하는 값으로 설정
+		list = adminModule.getUsersByPage(pageNumber, pageSize);
+		int totalCount = adminModule.getTotalRecordCount(); // 전체 레코드 수 조회
+		int totalPages = (totalCount + pageSize - 1) / pageSize;
+
 		if (depSelect == null || depSelect == "") {
 			list = adminModule.selectAll();
 			model.addAttribute("adminList", list);
@@ -61,6 +68,12 @@ public class AdminController {
 				model.addAttribute("dep", depSelect);
 			}
 		}
+		model.addAttribute("adminList", list);
+		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("totalPages", totalPages);
+
 		return "/config_main";
 	}
 
@@ -82,8 +95,14 @@ public class AdminController {
 		}
 		return "/config_main";
 	}
+
 	@PostMapping("/adminConfigChange")
-	public void configChange(String adminNumber,String adminUse) {
-		
+	public void configChange(String adminNumber, String adminUse) {
+		if (adminUse.equals("근무중")) {
+			adminModule.changeAdminConfigToY(adminNumber);
+		} else if (adminUse.equals("퇴직중")) {
+			adminModule.changeAdminConfigToN(adminNumber);
+		}
 	}
+	
 }
