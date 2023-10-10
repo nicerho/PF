@@ -1,6 +1,5 @@
 package portfolio;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +15,7 @@ public class NoticeModule {
 	private SqlSessionTemplate sqlsession;
 
 	public int noticeWrite(NoticeDTO nd, String url, String filename) {
+		System.out.println("url = "+url);
 		nd.setCfiledir(url);
 		nd.setCfilename(filename);
 		return sqlsession.insert("pfDB.noticeInsert", nd);
@@ -50,4 +50,5 @@ public class NoticeModule {
 	public void noticeClicked(String cno) {
 		sqlsession.update("pfDB.chnageClicked",cno);
 	}
+	
 }

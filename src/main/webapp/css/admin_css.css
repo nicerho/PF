@@ -61,10 +61,10 @@ width: 180px; background-color: rgba(0,0,0,0.9); color: white;
 position: absolute; top:60px; display: none; }
 .topmenu2 > ol > li { cursor: pointer; text-align: left; text-indent: 5px; }
 .topmenu2 > ol > li:hover { background-color: rgba(255,255,255,0.2); }
-
 .topmenu3{width: 200px; height: 60px; line-height: 60px; color: white; float: right; margin-right: 15px;}
-a{text-decoration-line: none;} a:link {color : white; } a:visited {color : white;} a:hover {color : white;} a:active {color :white;}
+a{text-decoration-line: none; color: black;} a:link {color : black; } a:visited {color : white;} a:hover {color : white;} a:active {color :black;}
 /*ad_main*/
+
 .ad_mainall{font-size: 13px; margin-left:10%;}
 .ad_main{margin-bottom: 30px;}
 .ad_main ul{list-style: none;}

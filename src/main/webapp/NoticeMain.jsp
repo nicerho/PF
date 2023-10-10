@@ -7,11 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./css/page_default.css?v=">
-<link rel="stylesheet" href="./css/admin_css.css?v=">
+<link rel="stylesheet" href="./css/page_default.css?v=4">
+<link rel="stylesheet" href="./css/admin_css.css?v=5">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
 <!-- 신규추가된 css 파일 -->
-<link rel="stylesheet" href="./css/notice.css?v=">
+<link rel="stylesheet" href="./css/notice.css?v=3">
 <!-- 신규추가된 css 파일 끝-->
 <title>관리자 페이지</title>
 <script>
@@ -51,7 +51,7 @@
        <c:forEach items="${notices}" var="notice">
        <ul>
         <li>${notice.getCno()}</li>
-       <li style="text-align: left; justify-content: flex-start;"> <a href="./notice/${notice.getCno()}">${notice.getCtitle()}</a></li>
+       <li style="text-align: left; justify-content: flex-start;" onclick="linked(${notice.getCno()})"> ${notice.getCtitle()}</li>
         <li><c:if test="${notice.getCfiledir()!=null}">O</c:if></li>
         <li><c:if test="${notice.getCfiledir()==null}">X</c:if></li>
         <li>${notice.getCclicked()}</li>
@@ -129,6 +129,9 @@ function deleteNotice(val){
 			console.log("Data Error!!");
 		});
 	}
+}
+function linked(val){
+	location.href="./notice/"+val;
 }
 </script>
 </html>

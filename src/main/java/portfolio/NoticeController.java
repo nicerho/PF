@@ -1,5 +1,8 @@
 package portfolio;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.util.List;
@@ -7,6 +10,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -46,8 +50,8 @@ public class NoticeController {
 	}
 
 	@RequestMapping("/noticeWrite")
-	public String noticeWrite(NoticeDTO nd, @RequestParam(required = false) MultipartFile cfile, HttpServletRequest req,
-			Model model) {
+	public String noticeWrite(NoticeDTO nd, @RequestParam(required = false) MultipartFile cfile,
+			HttpServletRequest req) {
 		FTPClient ftp = new FTPClient();
 		String extension = StringUtils.getFilenameExtension(cfile.getOriginalFilename());
 		String url = null;
@@ -73,8 +77,8 @@ public class NoticeController {
 					int rp = ftp.getReplyCode();
 					boolean result = ftp.storeFile("/www/img/" + uuid + "." + extension, cfile.getInputStream());
 					if (result == true) {
-						url = "http:// wjswjdgh123.cdn1.cafe24.com/img/" + uuid + "." + extension;
-						model.addAttribute("img", url);
+						url = "http://wjswjdgh123.cdn1.cafe24.com/img/" + uuid + "." + extension;
+
 					}
 				} else {
 					System.out.println("error");
@@ -85,20 +89,42 @@ public class NoticeController {
 			}
 			noticeModule.noticeWrite(nd, url, filename);
 		}
-		
-		System.out.println(url);
-		System.out.println(filename);
+
 		return "redirect:/noticeConfig";
 	}
+
 	@PostMapping("/noticeDelete")
 	public void deleteNotice(String noticeNumber) {
 		noticeModule.deleteNotice(noticeNumber);
 	}
+
 	@GetMapping("/notice/{no}")
-	public String noticeView(@PathVariable String no,Model model,NoticeDTO nt) {
+	public String noticeView(@PathVariable String no, Model model, NoticeDTO nt) {
 		noticeModule.noticeClicked(no);
 		nt = noticeModule.selectNoticeByCno(no, nt);
-		model.addAttribute("notice",nt);
+		model.addAttribute("notice", nt);
 		return "Notice";
+	}
+
+	@GetMapping("/notice/download/{no}")
+	public void fileDownload(@PathVariable String no, NoticeDTO nt, HttpServletResponse response) {
+		nt = noticeModule.selectNoticeByCno(no, nt);
+		String path = nt.getCfiledir();
+		System.out.println("path = "+path);
+		try {
+			response.setHeader("Content-Disposition", "attachment;filename=" + nt.getCfilename());
+			File file = new File(path);
+			System.out.println("filePath = "+file.getPath());
+			FileInputStream fileInputStream = new FileInputStream(path);
+			OutputStream out = response.getOutputStream();
+			int read = 0;
+			byte[] buffer = new byte[1024];
+			while ((read = fileInputStream.read(buffer)) != -1) {
+				out.write(buffer, 0, read);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("nt.getCfiledir = "+nt.getCfiledir());
 	}
 }

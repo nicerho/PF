@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./portfolio_file/css/admin_css.css?v=1">
+<link rel="stylesheet" href="./css/admin_css.css?v=22">
+<link rel="stylesheet" href="./css/page_default.css?v=33">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
 <title>관리자 페이지</title>
 </head>

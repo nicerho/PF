@@ -28,9 +28,9 @@
        <li>공지제목</li>
        <li><input type="text" class="notice_in in1" name="ctitle"></li>
        <li>글쓴이</li>
-       <li><input type="text" class="notice_in in2" readonly name="cwriter"></li> <li style="height:520px;">내용</li>
+       <li><input type="text"  class="notice_in in2" readonly name="cwriter"></li> <li style="height:520px;">내용</li>
        <li style="height:520px; padding-top: 10px;">
-       <textarea class="notice_in in3" name="csection"></textarea>
+       <textarea class="notice_in in3" name="csection" id="texts"></textarea>
        </li>       
        <li>첨부파일</li>
        <li><input type="file" name="cfile"></li>   
@@ -42,11 +42,12 @@
     </div>
 </div> 
 </section>
-<script src="./ckeditor/ckeditor.js"></script>
+<script src="./ckeditor/ckeditor.js?v=1"></script>
 <script>
 document.querySelector("#btn").addEventListener("click",function(){
 	notice.submit();
 })
+let texts = document.querySelector("#texts")
 	CKEDITOR.replace("texts")
 	CKEDITOR.config.resize_enabled = false;
 </script>
