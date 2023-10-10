@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,21 +17,7 @@
 </script>
 </head>
 <body>
-<nav>
-<div class="menusize">
-    <ul id="menus">
-        <li class="topmenu1">ADMINISTRATOR</li>
-        <li class="topmenu2">환경설정</li>
-        <li class="topmenu2">회원관리</li>
-        <li class="topmenu2">공지사항 관리</li>
-        <li class="topmenu2">FAQ</li>
-        <li class="topmenu2">예약현황</li>
-        <li class="topmenu2">관리자현황</li>
-        <li class="topmenu3">홍길동님 환영합니다  <a href="">[로그아웃]</a></li>
-    </ul>
- </div>
-<div class="menuline"></div> 
-</nav>
+<%@include file="./top.jsp" %>
 <!-- FAQ 리스트 시작 -->
 <main class="page_main">
 <section class="page_section">
@@ -40,8 +28,10 @@
         <ol>
         <li>FAQ내용 검색</li>
         <li>
-        <input type="text" class="search_input">
-        <input type="button" value="검색" class="datebtn">
+         <form action="./faqPage" method="get" id="searchFaq">
+        <input type="text" class="search_input" name="search" value="${search}">
+        <input type="button" value="검색" class="datebtn" id="faqSearchBtn">
+        </form>
         </li>        
         <li></li>
         <li></li> 
@@ -58,61 +48,59 @@
           
 <!-- FAQ 샘플 HTML 코드 시작 -->           
      <span id="faqSpan">
+     <c:forEach items="${faqs}" var="faq">
        <ul class="node">
         <li>Q</li>
-        <li  style="text-align: left; justify-content: flex-start;">FAQ 질문사항 출력1</li>
-        <li>관리자</li>
+        <li  style="text-align: left; justify-content: flex-start;">${faq.getFquestion()}</li>
+        <li>${faq.getFwriter()}</li>
         <li>2023-10-06</li>
         <li>
-        <input type="button" value="삭제" class="delbtn">
+        <input type="button" value="삭제" class="delbtn" onclick="deleteFaq(${faq.getFno()})">
         </li>
        </ul>
       <!-- display:none 또는 display:flex 로 해야합니다. -->
        <ol style="display: none;">
         <li>A</li>
-        <li style="text-align: left; justify-content: flex-start;">FAQ 답변사항 출력1</li>
+        <li style="text-align: left; justify-content: flex-start;">${faq.getFanswer()}</li>
        </ol> 
-         
-        <ul class="node">
-        <li>Q</li>
-        <li  style="text-align: left; justify-content: flex-start;">FAQ 질문사항 출력2</li>
-        <li>관리자</li>
-        <li>2023-10-06</li>
-        <li>
-        <input type="button" value="삭제" class="delbtn">
-        </li>
-       </ul>
-       <ol style="display: none;">
-        <li>A</li>
-        <li style="text-align: left; justify-content: flex-start;">FAQ 답변사항 출력2</li>
-       </ol> 
-       <ul class="node">
-        <li>Q</li>
-        <li  style="text-align: left; justify-content: flex-start;">FAQ 질문사항 출력3</li>
-        <li>관리자</li>
-        <li>2023-10-06</li>
-        <li>
-        <input type="button" value="삭제" class="delbtn">
-        </li>
-       </ul>
-       <ol style="display: none;">
-        <li>A</li>
-        <li style="text-align: left; justify-content: flex-start;">FAQ 답변사항 출력3</li>
-       </ol> 
-       
+       </c:forEach>
      </span>
 <!-- FAQ 샘플 HTML 코드 끝 -->          
-        
+          <c:if test="${faqs==null}">
        <ul class="nodatas">
         <li>등록된 FAQ 내용 없습니다.</li>
        </ul>
+       </c:if>
        <span class="notice_btns">
        <input type="button" value="FAQ 등록" class="meno_btn2"></span>
        <aside>
-        <div class="page_number">
-           <ul>
-           <li>1</li>      
-           </ul>
+     <div class="page_number">
+        <c:choose>
+       <c:when test="${currentPage > 1}">
+        <a href="./faqPage?pageNumber=${currentPage - 1}&search=${search}"><</a>
+       </c:when>
+        <c:otherwise>
+            <span><</span>
+        </c:otherwise>
+    </c:choose>
+   <c:forEach begin="1" end="${totalPages}" var="page">
+        <c:choose>
+            <c:when test="${page == currentPage}">
+                <span>${page}</span>
+            </c:when>
+            <c:otherwise>
+                <a href="./faqPage?pageNumber=${page}&search=${search}">${page}</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+     <c:choose>
+        <c:when test="${currentPage < totalPages}">
+            <a href="./faqPage?pageNumber=${currentPage + 1}&search=${search}">></a>
+        </c:when>
+        <c:otherwise>
+            <span>></span>
+        </c:otherwise>
+    </c:choose>
         </div>
        </aside>
        </section>
@@ -125,7 +113,27 @@
 <div class="menusize">Copyright ⓒ 2023 Raemian 분양안내 관리 시스템 All rights reserved</div>    
 </footer>
 </body>
-<script src="./js/faq.js?v=1">
-
+<script src="./js/faq.js?v=2"></script>
+<script>
+function deleteFaq(val){
+	console.log(val)
+	if(confirm("삭제시 데이터가 복구되지 않습니다 삭제하시겠습니까?")){
+		fetch("./faqDelete", {
+			method: "POST",
+			cache: "no-cache",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded"
+			},
+			body: "faqNumber=" + val
+		}).then(function(response) {
+			alert("삭제완료")
+			return response.text();
+		}).then(function(result) {
+			location.href = "./faqPage"
+		}).catch(function(error) {
+			console.log("Data Error!!");
+		});
+	}
+}
 </script>
 </html>

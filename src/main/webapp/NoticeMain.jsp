@@ -47,7 +47,6 @@
         <li>등록일</li>
         <li>삭제</li>
        </ul>
-       
        <c:forEach items="${notices}" var="notice">
        <ul>
         <li>${notice.getCno()}</li>

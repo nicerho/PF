@@ -59,7 +59,7 @@
 </body>
 <script>
 document.querySelector("#file").addEventListener("click",function(){
-	console.log("test")
+	location.href="./download/"+${notice.getCno()}
 })
 </script>
 </html>

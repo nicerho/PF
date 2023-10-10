@@ -51,4 +51,5 @@ public class NoticeModule {
 		sqlsession.update("pfDB.chnageClicked",cno);
 	}
 	
+	
 }

@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pfDB">
 	<select id="countAdmin" parameterType="map" resultType="ad">
-		SELECT * FROM admin
+		SELECT *
+		FROM admin
 		LIMIT #{start}, #{pageSize}
 	</select>
 	<select id="countAdmins" resultType="int">
@@ -57,32 +58,60 @@
 		insert into notice
 		values('0',#{ctitle},#{cwriter},#{csection},0,#{cfiledir},#{cfilename},now());
 	</insert>
-	  <select id="selectNoticeByPage" parameterType="map" resultType="nt">
-        SELECT * FROM notice
-        <where>
-            <if test="search != null and search != ''">
-                AND ctitle LIKE CONCAT('%', #{search}, '%')
-            </if>
-        </where>
-        ORDER BY cno DESC
-        LIMIT #{start}, #{pageSize}
-    </select>
-     <select id="countNotices" parameterType="map" resultType="int">
-        SELECT COUNT(*) FROM notice
-        <where>
-            <if test="search != null and search != ''">
-                AND ctitle LIKE CONCAT('%', #{search}, '%')
-            </if>
-        </where>
-    </select>
-    <delete id="deleteNotice">
-    delete from notice where cno=#{parameter}
-    </delete>
-    <select id="selectNoticeByCno" parameterType="string" resultType="nt">
-    select * from notice where cno=#{parameter}
-    </select>
-    <update id="chnageClicked" parameterType="string">
+	<select id="selectNoticeByPage" parameterType="map"
+		resultType="nt">
+		SELECT * FROM notice
+		<where>
+			<if test="search != null and search != ''">
+				AND ctitle LIKE CONCAT('%', #{search}, '%')
+			</if>
+		</where>
+		ORDER BY cno DESC
+		LIMIT #{start}, #{pageSize}
+	</select>
+	<select id="countNotices" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM notice
+		<where>
+			<if test="search != null and search != ''">
+				AND ctitle LIKE CONCAT('%', #{search}, '%')
+			</if>
+		</where>
+	</select>
+	<delete id="deleteNotice">
+		delete from notice where cno=#{parameter}
+	</delete>
+	<select id="selectNoticeByCno" parameterType="string"
+		resultType="nt">
+		select * from notice where cno=#{parameter}
+	</select>
+	<update id="chnageClicked" parameterType="string">
 		update notice set
 		cclicked=cclicked+1 where cno=#{parameter}
 	</update>
+	<select id="selectFaqByfno" parameterType="string"
+		resultType="fd">
+		select * from notice where fno=#{parameter}
+	</select>
+	<select id="countFaq" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM faq
+		<where>
+			<if test="search != null and search != ''">
+				AND fquestion LIKE CONCAT('%', #{search}, '%')
+			</if>
+		</where>
+	</select> 
+	<select id="selectFaqByPage" parameterType="map"
+		resultType="fd">
+		SELECT * FROM faq
+		<where>
+			<if test="search != null and search != ''">
+				AND fquestion LIKE CONCAT('%', #{search}, '%')
+			</if>
+		</where>
+		ORDER BY fno DESC
+		LIMIT #{start}, #{pageSize}
+	</select>
+		<delete id="deleteFaq">
+		delete from faq where fno=#{parameter}
+	</delete>
 </mapper>

@@ -1,10 +1,11 @@
 package portfolio;
 
-import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Inet4Address;
 import java.net.InetAddress;
+import java.net.URL;
 import java.util.List;
 import java.util.UUID;
 
@@ -110,21 +111,22 @@ public class NoticeController {
 	public void fileDownload(@PathVariable String no, NoticeDTO nt, HttpServletResponse response) {
 		nt = noticeModule.selectNoticeByCno(no, nt);
 		String path = nt.getCfiledir();
-		System.out.println("path = "+path);
 		try {
-			response.setHeader("Content-Disposition", "attachment;filename=" + nt.getCfilename());
-			File file = new File(path);
-			System.out.println("filePath = "+file.getPath());
-			FileInputStream fileInputStream = new FileInputStream(path);
+			String encodedFileName = new String(nt.getCfilename().getBytes("UTF-8"), "ISO-8859-1");
+			URL url = new URL(path);
+			response.setHeader("Content-Disposition", "attachment;filename=" + encodedFileName);
+			InputStream inputStream = url.openStream();
+			// FileInputStream fileInputStream = new FileInputStream(resource);
 			OutputStream out = response.getOutputStream();
-			int read = 0;
 			byte[] buffer = new byte[1024];
-			while ((read = fileInputStream.read(buffer)) != -1) {
-				out.write(buffer, 0, read);
+			int bytesRead;
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				out.write(buffer, 0, bytesRead);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("nt.getCfiledir = "+nt.getCfiledir());
+		System.out.println("nt.getCfiledir = " + nt.getCfiledir());
 	}
+
 }

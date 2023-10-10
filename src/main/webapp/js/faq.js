@@ -11,3 +11,7 @@ document.querySelector("#faqSpan").addEventListener("click", function(z) {
 	document.querySelectorAll("#faqSpan > ol ")[this.node].style["display"] = "flex";	//클릭된 질문에 대한 답변만 출력
 	console.log(this.ea)
 })
+
+document.querySelector("#faqSearchBtn").addEventListener("click",function(){
+	searchFaq.submit();
+})
