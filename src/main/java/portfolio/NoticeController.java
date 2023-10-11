@@ -116,7 +116,6 @@ public class NoticeController {
 			URL url = new URL(path);
 			response.setHeader("Content-Disposition", "attachment;filename=" + encodedFileName);
 			InputStream inputStream = url.openStream();
-			// FileInputStream fileInputStream = new FileInputStream(resource);
 			OutputStream out = response.getOutputStream();
 			byte[] buffer = new byte[1024];
 			int bytesRead;
@@ -126,7 +125,5 @@ public class NoticeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("nt.getCfiledir = " + nt.getCfiledir());
 	}
-
 }

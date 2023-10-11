@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<form id="frm" name="frm" method="post" action="./config">    
+<form id="frm" name="frm" method="get" action="./config">    
 <div class="listbody">
  <div class="adlisttitle">관리자 현황</div>
  <div class="procho">
     <ul>
         <li class="prochoL procfont">소속</li>
         <li class="prochoL ">
-            <select class="adlistcsel1" id="depSelect" name="depSelect" onchange="select(this.value)">
+            <select class="adlistcsel1" id="depSelect" name="adep" value="${adep}">
                 <option value="" <c:if test="${dep eq ''}">selected</c:if>>전체</option>
                 <option value="본사" <c:if test="${dep eq '본사'}">selected</c:if>>본사</option>
                 <option value="경기도" <c:if test="${dep eq '경기도'}">selected</c:if>>경기도</option>
@@ -33,13 +33,13 @@
     <ul>
         <li class="prochoL procfont">검색형식</li>
         <li class="prochoL ">
-            <select class="adlistcsel1" name="search_part" id="search_part" onchange="select2(this.value)">
+            <select class="adlistcsel1" name="searchpart" id="search_part" onchange="select2(this.value)">
                 <option <c:if test="${selected eq '이름'}">selected</c:if>>이름</option>
                 <option <c:if test="${selected eq '아이디'}">selected</c:if>>아이디</option>
                 <option <c:if test="${selected eq '연락처'}">selected</c:if>>연락처</option>
             </select>
         </li>
-        <li class="prochoL"><input type="text" class="adlistcsel1" id="searchPart"></li>
+        <li class="prochoL"><input type="text" class="adlistcsel1" name="search" id="searchPart"  value="${search}"></li>
         <li class="prochoL"><input type="submit" class="proclick" value="검색" id="searchPart2"></li>
         <li class="prochoL"><button type="button" class="proclick" >전체</button></li>
     </ul>
@@ -85,16 +85,34 @@
         </tbody>
     </table>
  </div>
- 
- <div class="propagebt">
-     <ul>
-                <li><a href="?pageNumber=1">First</a></li>
-                <c:forEach begin="1" end="${totalPages}" var="page">
-                    <li><a href="?pageNumber=${page}">${page}</a></li>
-                </c:forEach>
-                <li><a href="?pageNumber=${totalPages}">Last</a></li>
-            </ul>
- </div>
+ <div class="page_number">
+        <c:choose>
+       <c:when test="${currentPage > 1}">
+        <a href="./config?pageNumber=${currentPage - 1}&search=${search}"><</a>
+       </c:when>
+        <c:otherwise>
+            <span><</span>
+        </c:otherwise>
+    </c:choose>
+   <c:forEach begin="1" end="${totalPages}" var="page">
+        <c:choose>
+            <c:when test="${page == currentPage}">
+                <span>${page}</span>
+            </c:when>
+            <c:otherwise>
+                <a href="./config?pageNumber=${page}&search=${search}">${page}</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+     <c:choose>
+        <c:when test="${currentPage < totalPages}">
+            <a href="./config?pageNumber=${currentPage + 1}&search=${search}">></a>
+        </c:when>
+        <c:otherwise>
+            <span>></span>
+        </c:otherwise>
+    </c:choose>
+        </div>
 </div>
 </form>
-<script src="./js/Config.js?v=10"></script>
+<script src="./js/Config.js?v=13"></script>

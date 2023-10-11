@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AdminController {
 
-
 	@Resource(name = "adminsubmit")
 	private AdminModule adminModule;
 
@@ -46,56 +45,55 @@ public class AdminController {
 		return "/IdCheck";
 	}
 
+//	@RequestMapping("/config")
+//	public String configPage(Model model, AdminDTO ad, @RequestParam(required = false) String depSelect,
+//			@RequestParam(name = "pageNumber", defaultValue = "1") int pageNumber) {
+//		List<AdminDTO> list = null;
+//		int pageSize = 10; // 페이지 크기를 원하는 값으로 설정
+//		list = adminModule.getUsersByPage(pageNumber, pageSize);
+//		int totalCount = adminModule.getTotalRecordCount(); // 전체 레코드 수 조회
+//		int totalPages = (totalCount + pageSize - 1) / pageSize;
+//
+//		if (depSelect == null || depSelect == "") {
+//			list = adminModule.selectAll();
+//			model.addAttribute("adminList", list);
+//			model.addAttribute("dep", "");
+//		} else {
+//			list = adminModule.selectByDep(depSelect);
+//			if (list.isEmpty() != true) {
+//				model.addAttribute("adminList", list);
+//				model.addAttribute("dep", depSelect);
+//			} else {
+//				model.addAttribute("dep", depSelect);
+//			}
+//		}
+//		model.addAttribute("adminList", list);
+//		model.addAttribute("pageNumber", pageNumber);
+//		model.addAttribute("pageSize", pageSize);
+//		model.addAttribute("totalCount", totalCount);
+//		model.addAttribute("totalPages", totalPages);
+//
+//		return "/config_main";
+//	}
 	@RequestMapping("/config")
-	public String configPage(Model model, AdminDTO ad, @RequestParam(required = false) String depSelect,
-			@RequestParam(name = "pageNumber", defaultValue = "1") int pageNumber) {
+	public String configPage(Model model, AdminDTO ad, @RequestParam(required = false) String adep,
+			@RequestParam(name = "pageNumber", defaultValue = "1") int pageNumber, String search, String searchpart) {
 		List<AdminDTO> list = null;
 		int pageSize = 10; // 페이지 크기를 원하는 값으로 설정
-		list = adminModule.getUsersByPage(pageNumber, pageSize);
-		int totalCount = adminModule.getTotalRecordCount(); // 전체 레코드 수 조회
-		int totalPages = (totalCount + pageSize - 1) / pageSize;
-
-		if (depSelect == null || depSelect == "") {
-			list = adminModule.selectAll();
-			model.addAttribute("adminList", list);
-			model.addAttribute("dep", "");
-		} else {
-			list = adminModule.selectByDep(depSelect);
-			if (list.isEmpty() != true) {
-				model.addAttribute("adminList", list);
-				model.addAttribute("dep", depSelect);
-			} else {
-				model.addAttribute("dep", depSelect);
-			}
-		}
+		list = adminModule.getAdminByPage(pageNumber, pageSize, searchpart, adep, search);
+		int totalCount = adminModule.countAdmin(searchpart, adep, search); // 전체 레코드 수 조회
+		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
+		model.addAttribute("dep", adep);
 		model.addAttribute("adminList", list);
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("selected",searchpart);
 
+		
 		return "/config_main";
 	}
-
-	@RequestMapping("/adminSearch")
-	public String configSearch(Model model, String searchPart, String search_part) {
-		List<AdminDTO> list = null;
-		if (search_part.equals("이름")) {
-			list = adminModule.selectByName(searchPart);
-			model.addAttribute("adminList", list);
-			model.addAttribute("selected", search_part);
-		} else if (search_part.equals("아이디")) {
-			list = adminModule.selectById(searchPart);
-			model.addAttribute("adminList", list);
-			model.addAttribute("selected", search_part);
-		} else if (search_part.equals("연락처")) {
-			list = adminModule.selectByTel(searchPart);
-			model.addAttribute("adminList", list);
-			model.addAttribute("selected", search_part);
-		}
-		return "/config_main";
-	}
-
 	@PostMapping("/adminConfigChange")
 	public void configChange(String adminNumber, String adminUse) {
 		if (adminUse.equals("근무중")) {
@@ -104,5 +102,5 @@ public class AdminController {
 			adminModule.changeAdminConfigToN(adminNumber);
 		}
 	}
-	
+
 }
