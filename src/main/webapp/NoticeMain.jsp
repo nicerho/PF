@@ -51,8 +51,8 @@
        <ul>
         <li>${notice.getCno()}</li>
        <li style="text-align: left; justify-content: flex-start;" onclick="linked(${notice.getCno()})"> ${notice.getCtitle()}</li>
-        <li><c:if test="${notice.getCfiledir()!=null}">O</c:if></li>
-        <li><c:if test="${notice.getCfiledir()==null}">X</c:if></li>
+        <c:if test="${notice.getCfiledir()!=null}"><li>O</li></c:if>
+        <c:if test="${notice.getCfiledir()==null}"><li>X</li></c:if>
         <li>${notice.getCclicked()}</li>
         <li>${notice.getCwriter()}</li>
         <li>${notice.getCdate()}</li>

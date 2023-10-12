@@ -20,6 +20,9 @@ public class InfoController {
 			@RequestParam(value = "search", required = false) String search, Model model) {
 		int pageSize = 10;
 		List<InfoDTO> info = infoModule.getInfoByPage(pageNumber, pageSize, search);
+		for(InfoDTO i:info) {
+			i.setIdate(i.getIdate().substring(0,10));
+		}
 		int totalNotices = infoModule.countInfo(search);
 		int totalPages = (int) Math.ceil((double) totalNotices / pageSize);
 		model.addAttribute("infos", info);
