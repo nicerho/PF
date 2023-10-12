@@ -9,31 +9,28 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-@Repository("faq")
-public class FaqModule {
-	
+@Repository("info")
+public class InfoModule {
 	@Resource(name = "sqlsession")
 	private SqlSessionTemplate sqlsession;
-	public List<FaqDTO> getFaqByPage(int currentPage, int pageSize, String search) {
+	
+	public int insertInfo(InfoDTO id) {
+		return sqlsession.insert("pfDB.infoInsert", id);
+	}
+	public List<InfoDTO> getInfoByPage(int currentPage, int pageSize, String search) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("start", (currentPage - 1) * pageSize);
 		parameters.put("pageSize", pageSize);
 		parameters.put("search", search);
-		List<FaqDTO> lists = sqlsession.selectList("pfDB.selectFaqByPage", parameters);
+		List<InfoDTO> lists = sqlsession.selectList("pfDB.selectInfoByPage", parameters);
 		return lists;
 	}
-	public int countFaq(String search) {
+	public int countInfo(String search) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("search", search);
-		return sqlsession.selectOne("pfDB.countFaq", parameters);
+		return sqlsession.selectOne("pfDB.countInfo", parameters);
 	}
-	public void deleteFaq(String fno) {
-		int a = sqlsession.delete("pfDB.deleteFaq",fno);
-		System.out.println(a);
-	}
-	public int faqWrite(FaqDTO fd) {
-		
-	
-		return sqlsession.insert("pfDB.faqInsert", fd);
+	public void deleteInfo(String ino) {
+		sqlsession.delete("pfDB.deleteInfo",ino);
 	}
 }

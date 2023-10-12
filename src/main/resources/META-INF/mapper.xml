@@ -145,4 +145,34 @@
 		ORDER BY ano DESC
 		LIMIT #{start}, #{pageSize}
 	</select>
+		<insert id="faqInsert">
+		insert into faq
+		values('0',#{fquestion},#{fanswer},#{fwriter},now());
+	</insert>
+	<insert id="infoInsert">
+		insert into info
+		values('0',#{iwriter},#{ip1},#{ip2},#{ip3},#{ip4},#{iimagedir},#{iuse},#{iorder},now());
+	</insert>
+	<select id="selectInfoByPage" parameterType="map"
+		resultType="id">
+		SELECT * FROM info
+		<where>
+			<if test="search != null and search != ''">
+				AND ip1 LIKE CONCAT('%', #{search}, '%')
+			</if>
+		</where>
+		ORDER BY ino DESC
+		LIMIT #{start}, #{pageSize}
+	</select>
+	<select id="countInfo" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM info
+		<where>
+			<if test="search != null and search != ''">
+				AND ip1 LIKE CONCAT('%', #{search}, '%')
+			</if>
+		</where>
+	</select>
+	<delete id="deleteInfo">
+		delete from info where ino=#{parameter}
+	</delete>
 </mapper>

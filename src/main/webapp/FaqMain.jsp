@@ -72,7 +72,7 @@
        </ul>
        </c:if>
        <span class="notice_btns">
-       <input type="button" value="FAQ 등록" class="meno_btn2"></span>
+       <input type="button" value="FAQ 등록" class="meno_btn2" onclick="location.href='./FaqWrite.jsp'"></span>
        <aside>
      <div class="page_number">
         <c:choose>

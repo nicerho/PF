@@ -5,6 +5,7 @@
 	<typeAlias type="portfolio.AdminDTO" alias="ad" />
 	<typeAlias type="portfolio.NoticeDTO" alias="nt" />
 	<typeAlias type="portfolio.FaqDTO" alias="fd" />
+	<typeAlias type="portfolio.InfoDTO" alias="id" />
 	</typeAliases>	
 	
 </configuration>
