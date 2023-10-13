@@ -9,6 +9,14 @@
 		select * from
 		admin where aid=#{insertId}
 	</select>
+	<update id="changeAdminLoginAttempt" parameterType="string">
+		update admin set
+		aloginattempt=aloginattempt+1 where aid=#{parameter}
+	</update>
+	<update id="changeAdminLoginAttemptTo0" parameterType="string">
+		update admin set
+		aloginattempt=0 where aid=#{parameter}
+	</update>
 	<select id="findAdminByDep" resultType="ad"
 		parameterType="string">
 		select * from admin where adep=#{adep} order by ano

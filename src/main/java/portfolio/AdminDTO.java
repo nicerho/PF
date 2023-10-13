@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AdminDTO {
-String abranch,adep,aname,apos,aid,apw,aemail,atel,ano,ause;
+String abranch,adep,aname,apos,aid,apw,aemail,atel,ano,ause,adate,aloginattempt;
 }

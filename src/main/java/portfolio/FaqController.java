@@ -1,5 +1,7 @@
 package portfolio;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -21,11 +23,14 @@ public class FaqController {
 		List<FaqDTO> faq = faqModule.getFaqByPage(pageNumber, pageSize, search);
 		int totalNotices = faqModule.countFaq(search);
 		int totalPages = (int) Math.ceil((double) totalNotices / pageSize);
+		Date nowDate = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		String date = simpleDateFormat.format(nowDate);
 		model.addAttribute("faqs", faq);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("search", search);
-		
+		model.addAttribute("date",date);
 		
 		return "FaqMain";
 	}

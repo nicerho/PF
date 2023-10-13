@@ -12,7 +12,6 @@
   <div class="adbody">
       <div class="adtitle">ADMINISTRATOR</div>
       <div class="admoom">
-        <form id="member_log" name="member_log" method="post" action="./adminMain">
           <div class="intotal"> 
             <div class="adin1">
               <input type="text" name="login_id" id="login_id" class="loginid" value="" placeholder=" 아이디">
@@ -22,7 +21,7 @@
             </div>
           </div>
           <div class="adbt">
-            <button type="submit" class="loginbt1">로그인</button>
+            <button type="button" class="loginbt1" id=loginTry>로그인</button>
             <button type="button" class="loginbt2" id="member_add">회원가입</button>
           </div>
           <div class="adinfomain">
@@ -32,9 +31,8 @@
                <li class="adinfo">※ 퇴사시 해당 정보는 접속이 불가능 하게 됩니다.</li>
             </ul>
           </div>
-         </form>
         </div>
       </div>
     </body>
-    <script src="./js/page_result.js?v=1"></script>
+    <script src="./js/page_result.js?v=4"></script>
     </html>

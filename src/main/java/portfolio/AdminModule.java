@@ -1,5 +1,6 @@
 package portfolio;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,15 +31,28 @@ public class AdminModule {
 		return a;
 	}
 
-	public AdminDTO adminLogin(String login_id, String login_pass, AdminDTO ad) {
-		ad = sqlsession.selectOne("pfDB.login", login_id);
-		String pw = ad.getApw();
-		if (bp.matches(login_pass, pw)) {
-			System.out.println("good");
+	public Map<String,String> adminLogin(String login_id, String login_pass) {
+		Map<String,String> result = new HashMap<>();
+		AdminDTO ad = sqlsession.selectOne("pfDB.login", login_id);
+		if (ad==null) {
+			result.put("error","noid");
+		} else if (ad.getAuse().equals("N")) {
+			result.put("error","nouse");
 		} else {
-			System.out.println("hmm");
+			if (bp.matches(login_pass, ad.getApw()) == false && Integer.parseInt(ad.getAloginattempt()) < 5) {
+					sqlsession.update("pfDB.changeAdminLoginAttempt",login_id);
+					result.put("error","loginfail");
+					result.put("attemps", ad.getAloginattempt());
+			}else if(Integer.parseInt(ad.getAloginattempt()) == 5) {
+				result.put("error", "overmaxattempt");
+			}else if(bp.matches(login_pass, ad.getApw()) == true && Integer.parseInt(ad.getAloginattempt()) < 5) {
+				result.put("error", "noerr");
+				result.put("loginId", ad.getAid());
+				sqlsession.update("pfDB.changeAdminLoginAttemptTo0",login_id);
+			}
 		}
-		return ad;
+		
+		return result;
 	}
 
 	public int page() {

@@ -5,6 +5,8 @@ import java.io.OutputStream;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,10 +39,14 @@ public class NoticeController {
 		List<NoticeDTO> notices = noticeModule.getNoticesByPage(pageNumber, pageSize, search);
 		int totalNotices = noticeModule.countNotices(search);
 		int totalPages = (int) Math.ceil((double) totalNotices / pageSize);
+		Date nowDate = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		String date = simpleDateFormat.format(nowDate);
 		model.addAttribute("notices", notices);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("search", search);
+		model.addAttribute("date", date);
 		return "/NoticeMain";
 	}
 

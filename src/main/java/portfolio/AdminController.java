@@ -1,6 +1,9 @@
 package portfolio;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -18,9 +21,13 @@ public class AdminController {
 	private AdminModule adminModule;
 
 	@RequestMapping("/adminMain")
-	public String adminLogin(@RequestParam String login_id, @RequestParam String login_pass, AdminDTO ad) {
-		adminModule.adminLogin(login_id, login_pass, ad);
-		return "/admin_main";
+	public String adminLogin(@RequestParam String login_id, @RequestParam String login_pass,  Model model) {
+		Map<String,String> map = adminModule.adminLogin(login_id, login_pass);
+		if(map.containsKey("loginId")==true) {
+			
+		}
+		model.addAttribute("result",map);
+		return "/AdminLogin";
 	}
 
 	@PostMapping("/adminSubmit")
@@ -83,17 +90,21 @@ public class AdminController {
 		list = adminModule.getAdminByPage(pageNumber, pageSize, searchpart, adep, search);
 		int totalCount = adminModule.countAdmin(searchpart, adep, search); // 전체 레코드 수 조회
 		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
+		Date nowDate = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		String date = simpleDateFormat.format(nowDate);
 		model.addAttribute("dep", adep);
 		model.addAttribute("adminList", list);
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPages", totalPages);
-		model.addAttribute("selected",searchpart);
+		model.addAttribute("selected", searchpart);
+		model.addAttribute("date", date);
 
-		
 		return "/config_main";
 	}
+
 	@PostMapping("/adminConfigChange")
 	public void configChange(String adminNumber, String adminUse) {
 		if (adminUse.equals("근무중")) {
