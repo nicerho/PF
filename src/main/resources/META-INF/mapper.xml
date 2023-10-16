@@ -183,4 +183,12 @@
 	<delete id="deleteInfo">
 		delete from info where ino=#{parameter}
 	</delete>
+	<select id="memberCheck" resultType="md" parameterType="string">
+		select * from
+		pmember where mid=#{insertId}
+	</select>
+		<insert id="memberSubmit">
+		insert into pmember
+		values('0',#{mid},#{mpw},#{mtel},#{memail},#{madd1},#{madd2},#{madd3},#{mmarket1},#{mmarket2},#{mmarket3},#{mmarket4},now());
+	</insert>
 </mapper>

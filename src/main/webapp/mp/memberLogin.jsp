@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -98,37 +100,34 @@
 <div id="container">
 <div id="index">
     
-<!-- 서브 화면 시작 -->
+<!-- 로그인 화면 시작 -->
     <label class="mbship_title">
-        <p>MEMBER-SHIP</p>
+        <p>MEMBER-LOGIN</p>
         <ul>
-          <li>01. 약관동의</li>
-          <li><img src="./img/step_on.png" /></li>
-          <li>02. 정보입력</li>
-          <li><img src="./img/step_off.png" /></li>
-          <li>03. 가입완료</li>
+          <li>로그인하시면, 회원 별 다양한 맞춤 서비스를 이용하실 수 있습니다.</li>
         </ul>
       </label>
       <fieldset class="mbship_box">
-        <h3>약관동의</h3>
         <span class="agree_span">
-        <label class="mbship_text">
-          <input type="checkbox" id="all_agree" onclick="allagree(this.checked)" /> 의 모든 약관을 확인하고 전체 동의 합니다.
-          (전체동의, 선택항목도 포함됩니다.)
-        </label>
-        <label class="mbship_text">
-            <input type="checkbox"><font color="red"> (필수)</font>이용약관
-        </label>
-        <div class="agree_text"></div>
-        <label class="mbship_text">
-            <input type="checkbox"><font color="red"> (필수)</font> 개인정보 수집 및 이용
-        </label>
-        <div class="agree_text"></div>
+        <ul class="mblogin">
+            <li><img src="./img/mainlogin.png"></li>
+            <li>
+                <span>EXPERIENCE OF PRIDE <br> LOGIN</span>
+                <span>
+                    <ol class="login_ols">
+                        <li><input type="text" class="login_input" placeholder="아이디를 입력하세요"></li>
+                        <li><input type="password" class="login_input"  placeholder="패스워드를 입력하세요"></li>
+                        <li><button type="submit" class="login_btn1">로그인</button></li>
+                        <li><button type="button" class="login_btn2">회원가입</button></li>
+                        <li style="cursor: pointer;">아이디 찾기 / 비밀번호 찾기</li>
+                    </ol>
+                </span>
+            </li>
+        </ul>
         </span>
-        <button type="button" class="next_btn">다음단계</button>
       </fieldset>
     
-<!-- 서브 화면 종료 -->
+<!-- 로그인 화면 종료 -->
 </div>
   <!-- 카피라이터 시작 -->
 	  	<footer id="ft">

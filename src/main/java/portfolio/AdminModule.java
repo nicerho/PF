@@ -1,6 +1,5 @@
 package portfolio;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +62,6 @@ public class AdminModule {
 
 	public AdminDTO idCheck(String aid) {
 		AdminDTO ad = sqlsession.selectOne("pfDB.login", aid);
-
 		return ad;
 	}
 
