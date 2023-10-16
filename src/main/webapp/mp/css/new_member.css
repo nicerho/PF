@@ -129,6 +129,10 @@ p {
 .mbship_title > ul > li:first-of-type {
   color: #1B9C9E;
 }
+.span_btns { 
+  width: inherit;
+  text-align: center;
+}
 
 .mbship_box {
   width: 1100px;
@@ -146,6 +150,169 @@ p {
   display: block;
   padding: 10px 0 10px 10px;
 }
+
+.mbship_box > .agree_span > .mbinfos{
+  display: inline-block;
+  width: inherit;
+  height: auto;
+}
+
+.mbship_box > .agree_span > .mbinfos > li{
+  height: 50px;
+  float: left;
+  border-bottom: 1px solid #ccc;
+  line-height: 50px;
+}
+.mbship_box > .agree_span > .mbinfos > li:nth-of-type(odd){
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+}
+
+.mbship_box > .agree_span > .mbinfos > li:nth-of-type(even){
+  width: 80%;
+}
+.ck_font {
+  font-size: 5px;
+  font-weight: 100;
+  margin-right: 10px;
+}
+.mbinput1 {
+  width: 150px;
+  height: 35px;
+  border:1px solid #ccc;
+  border-radius: 5px;
+  text-indent: 10px;
+  box-sizing: border-box;
+}
+.mbinput2 {
+  width: 230px;
+  height: 35px;
+  border:1px solid #ccc;
+  border-radius: 5px;
+  text-indent: 10px;
+  box-sizing: border-box;
+}
+.mbinput3 {
+  width: 335px;
+  height: 35px;
+  border:1px solid #ccc;
+  border-radius: 5px;
+  text-indent: 10px;
+  box-sizing: border-box;
+}
+.mbinput4 {
+  margin-top: 5px;
+  width: 600px;
+  height: 35px;
+  border:1px solid #ccc;
+  border-radius: 5px;
+  text-indent: 10px;
+  box-sizing: border-box;
+}
+.mbinput5 {
+  width: 18px;
+  height: 18px;
+  vertical-align: -3px;
+}
+.ck_label { 
+  margin-right: 30px;
+  cursor: pointer;
+}
+
+.mb_btn1 {
+  vertical-align: -1px;
+  width: 100px;
+  height: 35px;
+  border: 0;
+  background-color: #1B9C9E;
+  border-radius: 5px;
+  line-height: 35px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 300;
+  color: white;
+}
+
+.mbship_box > .agree_span > .mblogin {
+    display: inline-block;
+    width: inherit;
+    height: auto;
+    border:1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.mbship_box > .agree_span > .mblogin > li{
+  height: 640px;
+  float: left;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+}
+.mbship_box > .agree_span > .mblogin > li:nth-of-type(1){
+    width: 714px;
+}
+.mbship_box > .agree_span > .mblogin > li:nth-of-type(2){
+    width: 314px;
+    padding-top: 90px;
+}
+.mbship_box > .agree_span > .mblogin > li:nth-of-type(2) > span:nth-of-type(1){
+  width: auto;
+  height: 50px;
+  display: block;
+  text-align: center;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  color: #1B9C9E;
+}
+
+.mbship_box > .agree_span > .mblogin > li:nth-of-type(2) > span:nth-of-type(2){
+  margin-top: 80px;
+  display: block;
+  height: auto;
+}
+.login_ols { 
+  width: inherit;
+  height: auto;
+}
+.login_ols > li {
+  width: inherit;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 15px;
+}
+
+.login_input { 
+  width: 250px;
+  height: 40px;
+  border: 1px solid #1B9C9E;
+  border-radius: 5px;
+  text-indent: 10px;
+}
+.login_btn1 {
+  width: 250px;
+  height: 40px;
+  border: 0;
+  background-color: #1B9C9E;
+  border-radius: 5px;
+  line-height: 40px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 400;
+  color: white;
+}
+.login_btn2 {
+  width: 250px;
+  height: 40px;
+  border: 0;
+  background-color: #555;
+  border-radius: 5px;
+  line-height: 40px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 400;
+  color: white;
+}
+
 .mbship_box > .agree_span > .mbship_text {
   font-family: "Noto Sans KR", sans-serif;
   font-size: 13px;
@@ -180,6 +347,40 @@ p {
   color: white;
   border: 0;
   margin: 0 auto;
+}
+
+.mbship_box > .next_btn2 {
+  width: 150px;
+  height: 45px;
+  display: block;
+  border:1px solid #1B9C9E;
+  color: #1B9C9E;
+  margin: 0 auto;
+}
+
+.span_buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.span_buttons > .next_btn1_1 {
+  width: 150px;
+  height: 45px;
+  display: block;
+  background-color: #1B9C9E;
+  color: white;
+  border: 0;
+  margin-right: 5px;
+}
+
+.span_buttons > .next_btn2_1 {
+  width: 150px;
+  height: 45px;
+  display: block;
+  border:1px solid #1B9C9E;
+  color: #1B9C9E;
 }
 
 .newmemdiv {

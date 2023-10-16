@@ -189,6 +189,6 @@
 	</select>
 		<insert id="memberSubmit">
 		insert into pmember
-		values('0',#{mid},#{mpw},#{mtel},#{memail},#{madd1},#{madd2},#{madd3},#{mmarket1},#{mmarket2},#{mmarket3},#{mmarket4},now());
+		values('0',#{mname},#{mid},#{mpw},#{mtel},#{memail},#{madd1},#{madd2},#{madd3},#{mmarket1},#{mmarket2},#{mmarket3},#{mmarket4},now());
 	</insert>
 </mapper>

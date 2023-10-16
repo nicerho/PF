@@ -30,6 +30,6 @@ public class MemberController {
 	@PostMapping("/memberSubmit")
 	public String adminSubmmit(@ModelAttribute("member") MemberDTO md, @RequestParam String mpw) {
 		memberModule.memberSubmit(mpw, md);
-		return "/index";
+		return "";
 	}
 }

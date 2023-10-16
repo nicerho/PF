@@ -15,5 +15,5 @@ public class MemberDTO {
  * mmarket3 : 우편물
  * mmarket4 : SMS(문자메세지)
  * */
-private String mno,mid,mpw,mtel,memail,madd1,madd2,madd3,mmarket1,mmarket2,mmarket3,mmarket4,mdate;
+private String mno,mname,mid,mpw,mtel,memail,madd1,madd2,madd3,mmarket1,mmarket2,mmarket3,mmarket4,mdate;
 }

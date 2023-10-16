@@ -22,7 +22,8 @@ public class MemberModule {
 //			md.setMmarket1("N");
 //			System.out.println(md.getMmarket1());
 //		}
-//				
+//		
+		System.out.println(md.getMmarket1());
 		int a = sqlsession.insert("pfDB.memberSubmit", md);
 		return a;
 	}
