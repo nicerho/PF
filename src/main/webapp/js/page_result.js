@@ -26,7 +26,8 @@ document.querySelector("#loginTry").addEventListener("click", function() {
 			alert("해당 아이디는 비밀번호 오류가 5회 이상으로 로그인이 불가능한 상태입니다.")
 		}else if(result=="noerr"){
 			location.href="./config"
-		}else{
+		}
+		else{
 			alert("비밀번호가 맞지 않습니다 5회 이상 틀릴 시 로그인이 불가능합니다 현재 :"+result.substring(9)+"회")
 		}
 	}).catch(function(error) {

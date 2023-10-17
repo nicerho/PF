@@ -35,7 +35,7 @@
 <div id="index">
     
 <!-- 회원가입 화면 시작 -->
-      <form id="memberSubmit" method="post" action="../memberSubmit">
+      <form id="memberSubmit" method="post" action="./memberSubmit">
     <label class="mbship_title">
         <p>MEMBER-SHIP</p>
         <ul>
@@ -85,7 +85,7 @@
         <input type="text" class="mbinput1" placeholder="우편번호" maxlength="5" readonly name="madd1" id="sample6_postcode">
         <button type="button" class="mb_btn1" onclick="sample6_execDaumPostcode()">주소찾기</button>
         <input type="text" class="mbinput4" placeholder="도로명 주소" id="sample6_address" readonly name="madd2">
-        <input type="text" class="mbinput4" placeholder="상세주소를 입력하세요" id="sample6_detailAddress" readonly name="madd3">
+        <input type="text" class="mbinput4" placeholder="상세주소를 입력하세요" id="sample6_detailAddress"  name="madd3">
         </li>
         <li style="height: 100px;"> 마케팅 수신여부</li>
         <li style="height: 100px;">

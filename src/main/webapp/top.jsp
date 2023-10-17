@@ -12,7 +12,7 @@
     <ul id="menus">
         <li class="topmenu1">ADMINISTRATOR</li>
         <li class="topmenu2"><a href="./infoPage" class="atag">환경설정</a></li>
-        <li class="topmenu2">회원관리</li>
+        <li class="topmenu2"><a href="./adminMember" class="atag">회원관리</a></li>
         <li class="topmenu2"><a href="./noticeConfig" class="atag">공지사항 관리</a></li>
         <li class="topmenu2"><a href="./faqPage" class="atag">FAQ</a></li>
         <li class="topmenu2"><a href="./config" class="atag">관리자현황</a></li>

@@ -31,3 +31,27 @@
 .top_menu > .top_menu_list > li:last-of-type:before{
     content: "";
 }
+.sub_title {
+    width: 100%;
+    height: 250px;
+    position: relative;
+    top:115px;
+    overflow: hidden;
+}
+.sub_image {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/bg_sub04.png");
+    background-position :0 -50px; 
+    height: 250px;
+}
+.sub_image > span{
+    padding-top: 60px;
+    display: block;
+    font-family: 'Noto Sans KR','Lora','Noto Sans Armenian','나눔 바른 고딕','맑은 고딕','Malgun Gothic','돋움','Apple SD Gothic Neo',sans-serif;
+    font-size: 30px;
+    color: white;
+    width: 100%;
+    height: 190px;
+    text-align: center;
+    line-height: 50px;
+}
+

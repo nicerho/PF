@@ -172,6 +172,9 @@
 		ORDER BY ino DESC
 		LIMIT #{start}, #{pageSize}
 	</select>
+	<select id="selectAllInfo" resultType="id">
+		SELECT * FROM info ORDER BY ino DESC
+	</select>
 	<select id="countInfo" parameterType="map" resultType="int">
 		SELECT COUNT(*) FROM info
 		<where>
@@ -191,4 +194,42 @@
 		insert into pmember
 		values('0',#{mname},#{mid},#{mpw},#{mtel},#{memail},#{madd1},#{madd2},#{madd3},#{mmarket1},#{mmarket2},#{mmarket3},#{mmarket4},now());
 	</insert>
+		<insert id="memberSubmit2" parameterType="md">
+		insert into pmember
+		values('0',#{mname},#{mid},#{mpw},#{mtel},#{memail},#{madd1},#{madd2},#{madd3},#{mmarket1},#{mmarket2},#{mmarket3},#{mmarket4},now());
+	</insert>
+		<select id="countMember" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM pmember
+		<where>
+			<if test="search != null and search != '' and searchpart=='이름'">
+				AND mname LIKE CONCAT('%', #{search}, '%')
+			</if>
+			<if test="search != null and search != '' and searchpart=='연락처'">
+				AND mtel LIKE CONCAT('%', #{search}, '%')
+			</if>
+			<if test="search != null and search != '' and searchpart=='아이디'">
+				AND mid LIKE CONCAT('%', #{search}, '%')
+			</if>
+		</where>
+	</select>
+	<select id="selectMemberByPage" parameterType="map"
+		resultType="md">
+		SELECT * FROM pmember
+		<where>
+			<if test="search != null and search != '' and searchpart=='이름'">
+				AND mname LIKE CONCAT('%', #{search}, '%')
+			</if>
+			<if test="search != null and search != '' and searchpart=='연락처'">
+				AND mtel LIKE CONCAT('%', #{search}, '%')
+			</if>
+			<if test="search != null and search != '' and searchpart=='아이디'">
+				AND mid LIKE CONCAT('%', #{search}, '%')
+			</if>
+		</where>
+		ORDER BY mno DESC
+		LIMIT #{start}, #{pageSize}
+	</select>
+	<delete id="deleteMember">
+		delete from pmember where mno=#{parameter}
+	</delete>
 </mapper>

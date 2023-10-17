@@ -92,4 +92,23 @@ public class AdminModule {
 		List<AdminDTO> lists = sqlsession.selectList("pfDB.selectAdminByPage", parameters);
 		return lists;
 	}
+	public int countMember(String searchpart, String search) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("searchpart", searchpart);
+		parameters.put("search", search);
+		return sqlsession.selectOne("pfDB.countMember", parameters);
+	}
+
+	public List<AdminDTO> getMemberByPage(int currentPage, int pageSize, String searchpart,  String search) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("start", (currentPage - 1) * pageSize);
+		parameters.put("pageSize", pageSize);
+		parameters.put("searchpart", searchpart);
+		parameters.put("search", search);
+		List<AdminDTO> lists = sqlsession.selectList("pfDB.selectMemberByPage", parameters);
+		return lists;
+	}
+	public int deleteMember(String memberNumber) {
+		return sqlsession.delete("pfDB.deleteMember",memberNumber);
+	}
 }

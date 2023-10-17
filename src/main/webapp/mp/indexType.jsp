@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<section id="px4" class="sect04 px-sect last-sect">
         <div class="w-base">
             <div class="tit-area  animated fadeInUp m_center">
@@ -11,49 +12,44 @@
              <div class="contents-4-box row">
                 <div>
                     <ul class="nav nav-tabs box-nav m_flex_center">
+             <c:forEach items="${info}" var="i">
                         <!-- 타입 출력 -->
-                        <li>
-                            <button type="button" class="tab_showroom active">타입명</button>
-                        </li>
-                        <li>
-                            <button type="button" class="tab_showroom">타입명</button>
-                        </li>
-                        <li>
-                            <button type="button" class="tab_showroom">타입명</button>
-                        </li>
 						 <li>
-                            <button type="button" class="tab_showroom">타입명</button>
+                            <button type="button" class="tab_showroom" >${i.getItype()}</button>
                         </li>
                         <!-- 타입 출력 끝-->
+                </c:forEach>
                     </ul>
                 </div>
                 <div class="col-sm-12 col-xs-12">
                     <div class="iso-box">
+                     <c:forEach items="${info}" var="i">
                         <div class="showroom" id="showroom_1">
-                            <span><img src="#" class="img-responsive center-block" alt=""></span>
+                            <span><img src="${i.getIimagedir()}" class="img-responsive center-block" alt=""></span>
 
                             <div class="area-info col-sm-1">
-                                <h4>타입명</h4>
+                                <h4>${i.getItype()}</h4>
                                 <ul>
                                     <li>
                                         <h5>주거전용</h5>
-                                        <p>수치출력㎡</p>
+                                        <p>${i.getIp1()}㎡</p>
                                     </li>
                                     <li>
                                         <h5>주거공용</h5>
-                                        <p>수치출력㎡</p>
+                                        <p>${i.getIp2()}㎡</p>
                                     </li>
                                     <li>
                                         <h5>기타공용</h5>
-                                        <p>수치출력㎡</p>
+                                        <p>${i.getIp3()}㎡</p>
                                     </li>
                                     <li>
                                         <h5>계약면적</h5>
-                                        <p>수치출력㎡</p>
+                                        <p>${i.getIp4()}㎡</p>
                                     </li>
                                 </ul>
                                </div>
                             </div>
+                                </c:forEach>
                     </div>
                 </div>
             </div>

@@ -8,8 +8,8 @@
         <li>홍길동님 환영합니다 [로그아웃]</li>
         -->
         <!-- 로그인 전 -->
-        <li>로그인</li>
-        <li>회원가입</li>
+        <li><a href="./memberLogin.jsp">로그인</a></li>
+        <li><a href="./joinAgree.jsp">회원가입</a></li>
         <li>FAQ</li>
         <li>공지사항</li>
         </ul>

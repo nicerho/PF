@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +20,15 @@ public class AdminController {
 
 	@Resource(name = "adminsubmit")
 	private AdminModule adminModule;
-
+	@Resource(name = "member")
+	private MemberModule memberModule;
 	@RequestMapping("/adminMain")
-	public String adminLogin(@RequestParam String login_id, @RequestParam String login_pass,  Model model) {
-		Map<String,String> map = adminModule.adminLogin(login_id, login_pass);
-		if(map.containsKey("loginId")==true) {
-			
+	public String adminLogin(@RequestParam String login_id, @RequestParam String login_pass, Model model) {
+		Map<String, String> map = adminModule.adminLogin(login_id, login_pass);
+		if (map.containsKey("loginId") == true) {
+
 		}
-		model.addAttribute("result",map);
+		model.addAttribute("result", map);
 		return "/AdminLogin";
 	}
 
@@ -52,36 +54,6 @@ public class AdminController {
 		return "/IdCheck";
 	}
 
-//	@RequestMapping("/config")
-//	public String configPage(Model model, AdminDTO ad, @RequestParam(required = false) String depSelect,
-//			@RequestParam(name = "pageNumber", defaultValue = "1") int pageNumber) {
-//		List<AdminDTO> list = null;
-//		int pageSize = 10; // 페이지 크기를 원하는 값으로 설정
-//		list = adminModule.getUsersByPage(pageNumber, pageSize);
-//		int totalCount = adminModule.getTotalRecordCount(); // 전체 레코드 수 조회
-//		int totalPages = (totalCount + pageSize - 1) / pageSize;
-//
-//		if (depSelect == null || depSelect == "") {
-//			list = adminModule.selectAll();
-//			model.addAttribute("adminList", list);
-//			model.addAttribute("dep", "");
-//		} else {
-//			list = adminModule.selectByDep(depSelect);
-//			if (list.isEmpty() != true) {
-//				model.addAttribute("adminList", list);
-//				model.addAttribute("dep", depSelect);
-//			} else {
-//				model.addAttribute("dep", depSelect);
-//			}
-//		}
-//		model.addAttribute("adminList", list);
-//		model.addAttribute("pageNumber", pageNumber);
-//		model.addAttribute("pageSize", pageSize);
-//		model.addAttribute("totalCount", totalCount);
-//		model.addAttribute("totalPages", totalPages);
-//
-//		return "/config_main";
-//	}
 	@RequestMapping("/config")
 	public String configPage(Model model, AdminDTO ad, @RequestParam(required = false) String adep,
 			@RequestParam(name = "pageNumber", defaultValue = "1") int pageNumber, String search, String searchpart) {
@@ -114,4 +86,30 @@ public class AdminController {
 		}
 	}
 
+	@GetMapping("/adminMember")
+	public String memberPage(Model model, @RequestParam(name = "pageNumber", defaultValue = "1") int pageNumber,
+			String search, String searchpart) {
+		int pageSize = 20;
+		int totalCount = adminModule.countMember(searchpart, search);
+		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
+		List<AdminDTO> list = adminModule.getMemberByPage(pageNumber, pageSize, searchpart, search);
+		Date nowDate = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		String date = simpleDateFormat.format(nowDate);
+		model.addAttribute("date", date);
+		model.addAttribute("memberList", list);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("selected", searchpart);
+		return "/adminMember";
+	}
+	@PostMapping("/deleteMember")
+	public void deleteMember(String memberNumber) {
+		adminModule.deleteMember(memberNumber);
+	}
+	@RequestMapping("/addDummys")
+	public void addDummy(MemberDTO md) {
+		memberModule.addDummy(md);
+	}
 }

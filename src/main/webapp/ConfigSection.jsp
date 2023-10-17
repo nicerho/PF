@@ -115,4 +115,4 @@
         </div>
 </div>
 </form>
-<script src="./js/Config.js?v=13"></script>
+<script src="./js/Config.js?v=${date}"></script>

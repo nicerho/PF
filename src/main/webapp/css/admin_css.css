@@ -65,7 +65,8 @@ position: absolute; top:60px; display: none; }
 
 .topmenu3{width: 200px; height: 60px; line-height: 60px; color: white; float: right; margin-right: 15px;}
 a{text-decoration-line: none;} a:link {color : black; } a:visited {color : black;} a:hover {color : black;} a:active {color :black;}
-.atag { color : white !important; }
+.atag { color:white !important; }
+
 /*ad_main*/
 .ad_mainall{font-size: 13px; margin-left:10%;}
 .ad_main{margin-bottom: 30px;}

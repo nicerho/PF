@@ -60,7 +60,7 @@
         </label>
         <div class="agree_text" id="agree2" ></div>
         </span>
-        <button type="button" class="next_btn">다음단계</button>
+        <button type="button" class="next_btn" onclick="np()">다음단계</button>
       </fieldset>
     
 <!-- 서브 화면 종료 -->
@@ -73,9 +73,7 @@
 </body>
 <script>
 var agree=function(f){
-	
 	var http = new XMLHttpRequest();
-
 	http.open("GET",f,false); //true면 비동기 false면 동기
 	//open(메소드,url,async,user,password)
 	http.send();
@@ -107,6 +105,14 @@ function clicked(){
 		all.checked = true
 	}
 	//total.innerText
+}
+function np(){
+	var all = document.getElementById("all_agree")
+	if(all.checked==false){
+		alert("필수항목에 동의하셔야 합니다.")
+	} else{
+		location.href="./joinMember.jsp"
+	}
 }
 </script>
 </html>

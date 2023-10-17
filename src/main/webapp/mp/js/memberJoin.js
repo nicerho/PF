@@ -83,8 +83,6 @@ function sample6_execDaumPostcode() {
 }
 
 function sub() {
-	console.log(document.querySelector("#ck").value)
-	console.log(document.querySelector("#mname").value)
 	if (document.getElementById("m1").checked == true) {
 		mmarket1.value = "Y";
 	}
@@ -106,8 +104,9 @@ function sub() {
 	}
 	else if (document.querySelector("#mpw").value != document.querySelector("#mpwck").value) {
 		alert("동일한 패스워드를 입력해주세요.")
+	} else if (document.getElementById("sample6_postcode").value == "" || document.getElementById("sample6_address").value == "" || document.getElementById("sample6_detailAddress").value == "") {
+		alert("주소를 입력하셔야합니다.")
 	}
-	//console.log(mmarket1.value)
 	else {
 		memberSubmit.submit();
 	}
