@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header id="hd">
  <div class="top_menu">
         <ul class="top_menu_list">
         <!--로그인 후 -->
-        <!--
-        <li>홍길동님 환영합니다 [로그아웃]</li>
-        -->
+         <c:if test="${loginMember!=null}">
+        <li>${loginMember.getMname()}님 환영합니다 <a href="./logout">[로그아웃]</a></li>
+        </c:if>
         <!-- 로그인 전 -->
+        <c:if test="${loginMember==null}">
         <li><a href="./memberLogin.jsp">로그인</a></li>
         <li><a href="./joinAgree.jsp">회원가입</a></li>
         <li>FAQ</li>
         <li>공지사항</li>
+        </c:if>
         </ul>
     </div>
         <div class="top">

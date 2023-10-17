@@ -16,7 +16,7 @@
         <li class="topmenu2"><a href="./noticeConfig" class="atag">공지사항 관리</a></li>
         <li class="topmenu2"><a href="./faqPage" class="atag">FAQ</a></li>
         <li class="topmenu2"><a href="./config" class="atag">관리자현황</a></li>
-        <li class="topmenu3">홍길동님 환영합니다  <a href="" class="atag">[로그아웃]</a></li>
+        <li class="topmenu3">${loginAdmin.getAname()}님 환영합니다  <a href="./logout" class="atag">[로그아웃]</a></li>
     </ul>
  </div>
 <div class="menuline"></div>

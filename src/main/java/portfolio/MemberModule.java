@@ -37,8 +37,8 @@ public class MemberModule {
 		return sqlsession.selectList("pfDB.selectAllInfo");
 	}
 
-	public Map<String, String> login(String loginId, String loginPw) {
-		Map<String, String> result = new HashMap<>();
+	public Map<String, Object> login(String loginId, String loginPw) {
+		Map<String, Object> result = new HashMap<>();
 		MemberDTO md = sqlsession.selectOne("pfDB.memberCheck", loginId);
 		if (md == null) {
 			result.put("error", "noid");
@@ -47,7 +47,7 @@ public class MemberModule {
 				result.put("error", "loginfail");
 			} else if (bp.matches(loginPw, md.getMpw()) == true) {
 				result.put("error", "noerr");
-				result.put("loginId", md.getMid());
+				result.put("loginMember", md);
 			}
 		}
 

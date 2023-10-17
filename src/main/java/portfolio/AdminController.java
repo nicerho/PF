@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class AdminController {
@@ -22,11 +25,23 @@ public class AdminController {
 	private AdminModule adminModule;
 	@Resource(name = "member")
 	private MemberModule memberModule;
-	@RequestMapping("/adminMain")
-	public String adminLogin(@RequestParam String login_id, @RequestParam String login_pass, Model model) {
-		Map<String, String> map = adminModule.adminLogin(login_id, login_pass);
-		if (map.containsKey("loginId") == true) {
 
+	@GetMapping("/index")
+	public String adminIndex(@SessionAttribute(name = "loginAdmin", required = false) AdminDTO ad) {
+		if (ad != null) {
+			return "redirect:config";
+		}
+		return "/index";
+	}
+
+	@RequestMapping("/adminMain")
+	public String adminLogin(@RequestParam String login_id, @RequestParam String login_pass, Model model,
+			HttpServletRequest req) {
+		Map<String, Object> map = adminModule.adminLogin(login_id, login_pass);
+		if (map.containsKey("loginMember") == true) {
+			HttpSession session = req.getSession();
+			session.setAttribute("loginAdmin", map.get("loginMember"));
+			model.addAttribute("loginAdmin", map.get("loginMember"));
 		}
 		model.addAttribute("result", map);
 		return "/AdminLogin";
@@ -104,12 +119,24 @@ public class AdminController {
 		model.addAttribute("selected", searchpart);
 		return "/adminMember";
 	}
+
 	@PostMapping("/deleteMember")
 	public void deleteMember(String memberNumber) {
 		adminModule.deleteMember(memberNumber);
 	}
+
 	@RequestMapping("/addDummys")
 	public void addDummy(MemberDTO md) {
 		memberModule.addDummy(md);
 	}
+
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+		return "redirect:index";
+	}
+
 }

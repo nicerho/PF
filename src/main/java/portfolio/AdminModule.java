@@ -30,8 +30,8 @@ public class AdminModule {
 		return a;
 	}
 
-	public Map<String,String> adminLogin(String login_id, String login_pass) {
-		Map<String,String> result = new HashMap<>();
+	public Map<String,Object> adminLogin(String login_id, String login_pass) {
+		Map<String,Object> result = new HashMap<>();
 		AdminDTO ad = sqlsession.selectOne("pfDB.login", login_id);
 		if (ad==null) {
 			result.put("error","noid");
@@ -46,7 +46,7 @@ public class AdminModule {
 				result.put("error", "overmaxattempt");
 			}else if(bp.matches(login_pass, ad.getApw()) == true && Integer.parseInt(ad.getAloginattempt()) < 5) {
 				result.put("error", "noerr");
-				result.put("loginId", ad.getAid());
+				result.put("loginMember", ad);
 				sqlsession.update("pfDB.changeAdminLoginAttemptTo0",login_id);
 			}
 		}
