@@ -97,6 +97,9 @@
         <c:if test="${reserve.getRchange()=='N'}">
         <button type="button" class="next_btn1_1" onclick="reserve()">예약수정</button>
         </c:if>
+        <c:if test="${reserve.getRchange()=='Y'}">
+        <div>사전방문예약을 변경하신 회원은 다시 변경이 불가능합니다.</div>
+        </c:if>
         </span>
       </fieldset>
     </form>

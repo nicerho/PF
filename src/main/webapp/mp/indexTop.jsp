@@ -63,7 +63,7 @@
                     <ul>
                         <li><a href="./reserve?mid=${loginMember.getMid()}">사전방문예약</a></li>
                         <li><a href="./reserveCheck?mid=${loginMember.getMid()}">사전방문예약확인</a></li>
-                        <li><a href="">사전방문예약취소</a></li>
+                        <li><a href="./reserveCheck2?mid=${loginMember.getMid()}">사전방문예약취소</a></li>
                     </ul>
                 </li>
             </nav>

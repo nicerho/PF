@@ -119,4 +119,5 @@ public class AdminModule {
 	    String date = simpleDateFormat.format(nowDate); 
 		return sqlsession.selectList("pfDB.selectMemberByDate",date);
 	}
+	
 }

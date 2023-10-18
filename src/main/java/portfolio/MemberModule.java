@@ -57,7 +57,7 @@ public class MemberModule {
 	public void addDummy(MemberDTO md) {
 		for (int i = 0; i < 100; i++) {
 			md.setMname("Dummy");
-			md.setMid("dummy" + String.valueOf(i));
+			md.setMid(String.valueOf(i) + "dummy" + String.valueOf(i));
 			md.setMpw("123");
 			md.setMtel("01012341234");
 			md.setMemail("dummy@dummy.com");
@@ -68,14 +68,45 @@ public class MemberModule {
 			md.setMmarket2("N");
 			md.setMmarket3("N");
 			md.setMmarket4("Y");
-			sqlsession.insert("pfDB.memberSubmit2",md);
+			sqlsession.insert("pfDB.memberSubmit2", md);
 		}
 	}
+
 	public void insertReserve(ReserveDTO rd) {
-		sqlsession.insert("pfDB.reserveInsert",rd);
+		sqlsession.insert("pfDB.reserveInsert", rd);
 	}
-	public ReserveDTO reserveCheck(ReserveDTO rd,String mid) {
-		rd = sqlsession.selectOne("pfDB.selectReserve",mid);
+
+	public ReserveDTO reserveCheck(ReserveDTO rd, String mid) {
+		rd = sqlsession.selectOne("pfDB.selectReserve", mid);
 		return rd;
+	}
+
+	public void changeReserve(ReserveDTO rd) {
+		rd = sqlsession.selectOne("pfDB.changeReserve", rd);
+	}
+
+	public void deleteReserve(String rid) {
+		sqlsession.delete("pfDB.deleteReserve", rid);
+	}
+
+	public int countReserve(String searchpart, String search) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("searchpart", searchpart);
+		parameters.put("search", search);
+		return sqlsession.selectOne("pfDB.countReserve", parameters);
+	}
+
+	public List<ReserveDTO> getReserveByPage(int currentPage, int pageSize, String searchpart, String search) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("start", (currentPage - 1) * pageSize);
+		parameters.put("pageSize", pageSize);
+		parameters.put("searchpart", searchpart);
+		parameters.put("search", search);
+		List<ReserveDTO> lists = sqlsession.selectList("pfDB.selectReserveByPage", parameters);
+		return lists;
+	}
+
+	public List<ReserveDTO> getReserveLimit() {
+		return sqlsession.selectList("pfDB.selectReserve20");
 	}
 }

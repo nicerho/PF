@@ -7,15 +7,29 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-		<annotation-driven/>
-		<resources location="/" mapping="/**"/>
-		<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/"/>
-		<beans:property name="suffix" value=".jsp"/>
-		</beans:bean>
-		 <context:component-scan base-package="portfolio"/>
-		<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="defaultEncoding" value="utf-8"/>
-		<beans:property name="maxUploadSize" value="2097152"/>
-		</beans:bean>
+	<annotation-driven />
+	<resources location="/" mapping="/**" />
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	<context:component-scan base-package="portfolio" />
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="utf-8" />
+		<beans:property name="maxUploadSize" value="2097152" />
+	</beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/index"/>		
+			<exclude-mapping path="/adminLogin"/>
+			<exclude-mapping path="/mp/mainpage"/>			
+			<exclude-mapping path="*.js"/>			
+			<exclude-mapping path="*.css"/>
+			<exclude-mapping path="*.jsp"/>
+			<beans:bean id="DefaultInterceptor" class="portfolio.Interceptor" />
+		</interceptor>
+	</interceptors>
 </beans:beans>

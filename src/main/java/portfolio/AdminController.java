@@ -36,7 +36,10 @@ public class AdminController {
 	@RequestMapping("/adminMain")
 	public String adminMain(Model model) {
 		List<MemberDTO> memberList = adminModule.getMemberByDate();
+		List<ReserveDTO> reserveList = memberModule.getReserveLimit();
 		model.addAttribute("members",memberList);
+		model.addAttribute("reserve",reserveList);
+		
 		return "admin_main";
 	}
 	@RequestMapping("/adminLogin")
@@ -141,7 +144,21 @@ public class AdminController {
 		if (session != null) {
 			session.invalidate();
 		}
-		return "redirect:index";
+		return "redirect:/index";
+	}
+	@RequestMapping("/reserveCheck")
+	public String reserveCheck(Model model, AdminDTO ad, @RequestParam(required = false) String adep,
+			@RequestParam(name = "pageNumber", defaultValue = "1") int pageNumber, String search, String searchpart) {
+		int pageSize = 30;
+		int totalCount = memberModule.countReserve(searchpart, search);
+		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
+		List<ReserveDTO> list = memberModule.getReserveByPage(pageNumber, pageSize, searchpart, search);
+		model.addAttribute("reserveList", list);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("selected", searchpart);
+		return "reserveCheck";
 	}
 
 }

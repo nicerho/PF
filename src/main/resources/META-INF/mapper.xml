@@ -246,4 +246,45 @@
 	<select id="selectReserve" resultType="rd" parameterType="string">
 		SELECT * FROM reserve where rid=#{parameter}
 	</select>
+	<update id="changeReserve" parameterType="rd">
+		update reserve set
+		rreservedate=#{rreservedate} , rtime=#{rtime}, rperson=#{rperson} , rchange='Y' where rid=#{rid}
+	</update>
+	<delete id="deleteReserve" parameterType="string">
+		delete from reserve where rid=#{parameter}
+	</delete>
+		<select id="countReserve" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM reserve
+		<where>
+			<if test="search != null and search != '' and searchpart=='이름'">
+				AND rname LIKE CONCAT('%', #{search}, '%')
+			</if>
+			<if test="search != null and search != '' and searchpart=='연락처'">
+				AND rtel LIKE CONCAT('%', #{search}, '%')
+			</if>
+			<if test="search != null and search != '' and searchpart=='아이디'">
+				AND rid LIKE CONCAT('%', #{search}, '%')
+			</if>
+		</where>
+	</select>
+	<select id="selectReserveByPage" parameterType="map"
+		resultType="rd">
+		SELECT * FROM reserve
+		<where>
+			<if test="search != null and search != '' and searchpart=='이름'">
+				AND rname LIKE CONCAT('%', #{search}, '%')
+			</if>
+			<if test="search != null and search != '' and searchpart=='연락처'">
+				AND rtel LIKE CONCAT('%', #{search}, '%')
+			</if>
+			<if test="search != null and search != '' and searchpart=='아이디'">
+				AND rid LIKE CONCAT('%', #{search}, '%')
+			</if>
+		</where>
+		ORDER BY rno DESC
+		LIMIT #{start}, #{pageSize}
+	</select>
+	<select id="selectReserve20" resultType="rd">
+	select * from reserve order by rno desc;
+	</select>
 </mapper>
