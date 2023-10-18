@@ -15,7 +15,7 @@
         <li><a href="./memberLogin.jsp">로그인</a></li>
         <li><a href="./joinAgree.jsp">회원가입</a></li>
         <li>FAQ</li>
-        <li>공지사항</li>
+        <li><a href="./notice">공지사항</a></li>
         </c:if>
         </ul>
     </div>
