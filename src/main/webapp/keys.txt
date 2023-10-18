@@ -1,0 +1,25 @@
+프로젝트 service id = ncp:sms:kr:318002283590:raemian
+
+api 인증키
+access key id = r7CvGlRfIoILTf14q8kj
+secret key = PT351QPM4f43dJQ1ZBiUkf2efETeYJ5nJLWrxhkV
+
+JSONObject = {}
+JSONArray = []
+
+
+{
+  "type": "string",
+  "countryCode": "string",
+  "from": "string",
+  "contentType": "string",
+  "content": "string",
+  "reserveTime": "string",
+  "messages": [
+    {
+      "content": "string",
+      "to": "string"
+    }
+  ]
+}
+}

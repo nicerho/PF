@@ -1,5 +1,7 @@
 package portfolio;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,16 +101,22 @@ public class AdminModule {
 		return sqlsession.selectOne("pfDB.countMember", parameters);
 	}
 
-	public List<AdminDTO> getMemberByPage(int currentPage, int pageSize, String searchpart,  String search) {
+	public List<MemberDTO> getMemberByPage(int currentPage, int pageSize, String searchpart,  String search) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("start", (currentPage - 1) * pageSize);
 		parameters.put("pageSize", pageSize);
 		parameters.put("searchpart", searchpart);
 		parameters.put("search", search);
-		List<AdminDTO> lists = sqlsession.selectList("pfDB.selectMemberByPage", parameters);
+		List<MemberDTO> lists = sqlsession.selectList("pfDB.selectMemberByPage", parameters);
 		return lists;
 	}
 	public int deleteMember(String memberNumber) {
 		return sqlsession.delete("pfDB.deleteMember",memberNumber);
+	}
+	public List<MemberDTO> getMemberByDate() {
+		Date nowDate = new Date();
+	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    String date = simpleDateFormat.format(nowDate); 
+		return sqlsession.selectList("pfDB.selectMemberByDate",date);
 	}
 }

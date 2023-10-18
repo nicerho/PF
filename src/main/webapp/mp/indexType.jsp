@@ -12,21 +12,26 @@
              <div class="contents-4-box row">
                 <div>
                     <ul class="nav nav-tabs box-nav m_flex_center">
-             <c:forEach items="${info}" var="i">
+              <c:forEach items="${info}" var="i">
                         <!-- 타입 출력 -->
 						 <li>
-                            <button type="button" class="tab_showroom" >${i.getItype()}</button>
+						 	<c:if test="${i.getIorder()==1}">
+                            <button type="button" class="tab_showroom active" data-num="${i.getIorder()}">${i.getItype()}</button>
+                            </c:if>
+                            <c:if test="${i.getIorder()!=1}">
+                            <button type="button" class="tab_showroom " data-num="${i.getIorder()}">${i.getItype()}</button>
+                            </c:if>
                         </li>
+                     
                         <!-- 타입 출력 끝-->
-                </c:forEach>
+             </c:forEach>
                     </ul>
                 </div>
                 <div class="col-sm-12 col-xs-12">
                     <div class="iso-box">
                      <c:forEach items="${info}" var="i">
-                        <div class="showroom" id="showroom_1">
+                        <div class="showroom" id="showroom_${i.getIorder()}">
                             <span><img src="${i.getIimagedir()}" class="img-responsive center-block" alt=""></span>
-
                             <div class="area-info col-sm-1">
                                 <h4>${i.getItype()}</h4>
                                 <ul>

@@ -7,6 +7,8 @@
         <!--로그인 후 -->
          <c:if test="${loginMember!=null}">
         <li>${loginMember.getMname()}님 환영합니다 <a href="./logout">[로그아웃]</a></li>
+        <li>FAQ</li>
+        <li>공지사항</li>
         </c:if>
         <!-- 로그인 전 -->
         <c:if test="${loginMember==null}">
@@ -59,11 +61,14 @@
                 <li>
                     <a href=""><span>사전방문예약</span></a>
                     <ul>
-                        <li><a href="">사전방문예약</a></li>
-                        <li><a href="">사전방문예약확인</a></li>
+                        <li><a href="./reserve?mid=${loginMember.getMid()}">사전방문예약</a></li>
+                        <li><a href="./reserveCheck?mid=${loginMember.getMid()}">사전방문예약확인</a></li>
                         <li><a href="">사전방문예약취소</a></li>
                     </ul>
                 </li>
             </nav>
         </div>
+        <script>
+        
+        </script>
 	</header>

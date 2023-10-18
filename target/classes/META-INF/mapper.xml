@@ -232,4 +232,18 @@
 	<delete id="deleteMember">
 		delete from pmember where mno=#{parameter}
 	</delete>
+	<select id="selectMemberByDate" parameterType="string"
+		resultType="md">
+		SELECT * FROM pmember where
+		mdate LIKE CONCAT(#{parameter}, '%')
+		ORDER BY mno DESC
+		LIMIT 20
+	</select>
+	<insert id="reserveInsert">
+		insert into reserve
+		values('0',#{rid},#{rname},#{rreservedate},#{rtime},#{rtel},#{rperson},now(),'N');
+	</insert>
+	<select id="selectReserve" resultType="rd" parameterType="string">
+		SELECT * FROM reserve where rid=#{parameter}
+	</select>
 </mapper>

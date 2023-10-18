@@ -71,4 +71,11 @@ public class MemberModule {
 			sqlsession.insert("pfDB.memberSubmit2",md);
 		}
 	}
+	public void insertReserve(ReserveDTO rd) {
+		sqlsession.insert("pfDB.reserveInsert",rd);
+	}
+	public ReserveDTO reserveCheck(ReserveDTO rd,String mid) {
+		rd = sqlsession.selectOne("pfDB.selectReserve",mid);
+		return rd;
+	}
 }

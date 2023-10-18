@@ -29,12 +29,17 @@ public class AdminController {
 	@GetMapping("/index")
 	public String adminIndex(@SessionAttribute(name = "loginAdmin", required = false) AdminDTO ad) {
 		if (ad != null) {
-			return "redirect:config";
+			return "redirect:adminMain";
 		}
 		return "/index";
 	}
-
 	@RequestMapping("/adminMain")
+	public String adminMain(Model model) {
+		List<MemberDTO> memberList = adminModule.getMemberByDate();
+		model.addAttribute("members",memberList);
+		return "admin_main";
+	}
+	@RequestMapping("/adminLogin")
 	public String adminLogin(@RequestParam String login_id, @RequestParam String login_pass, Model model,
 			HttpServletRequest req) {
 		Map<String, Object> map = adminModule.adminLogin(login_id, login_pass);
@@ -107,7 +112,7 @@ public class AdminController {
 		int pageSize = 20;
 		int totalCount = adminModule.countMember(searchpart, search);
 		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
-		List<AdminDTO> list = adminModule.getMemberByPage(pageNumber, pageSize, searchpart, search);
+		List<MemberDTO> list = adminModule.getMemberByPage(pageNumber, pageSize, searchpart, search);
 		Date nowDate = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String date = simpleDateFormat.format(nowDate);
