@@ -120,7 +120,8 @@ document.getElementById("authBtn").addEventListener("click", function() {
 		alert("인증이 완료되었습니다.")
 		auth = 'Y';
 		authBtn.innerHTML = "";
-		authBtn.innerHTML = "인증 완료";
+		document.getElementById("authCall").style.display="none";
+		authBtn.style.display="none";
 	} else {
 		alert("인증번호가 올바르지 않습니다. 다시 확인해주세요.")
 	}
