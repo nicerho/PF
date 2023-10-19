@@ -27,7 +27,7 @@
        <li>질문 제목</li>
        <li><input type="text" class="notice_in in1" name="fquestion"></li>
        <li>글쓴이</li>
-       <li><input type="text" name="fwriter" class="notice_in in2" readonly></li> <li style="height:520px;">질문 내용</li>
+       <li><input type="text" name="fwriter" class="notice_in in2" value="${loginAdmin.getAname()}" readonly></li> <li style="height:520px;">질문 내용</li>
        <li style="height:520px; padding-top: 10px;">
        <textarea id="texts" name="fanswer" class="notice_in in3"></textarea>
        </li>      

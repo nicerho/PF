@@ -41,7 +41,7 @@
         </li>
         <li class="prochoL"><input type="text" class="adlistcsel1" name="search" id="searchPart"  value="${search}"></li>
         <li class="prochoL"><input type="submit" class="proclick" value="검색" id="searchPart2"></li>
-        <li class="prochoL"><button type="button" class="proclick" >전체</button></li>
+        <li class="prochoL"><button type="button" class="proclick" onclick="location.href='./config'">전체</button></li>
     </ul>
  </div>
  <div class="protaball">

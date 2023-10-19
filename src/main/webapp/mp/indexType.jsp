@@ -13,6 +13,7 @@
                 <div>
                     <ul class="nav nav-tabs box-nav m_flex_center">
               <c:forEach items="${info}" var="i">
+              <c:if test="${i.getIuse()=='O'}">
                         <!-- 타입 출력 -->
 						 <li>
 						 	<c:if test="${i.getIorder()==1}">
@@ -22,7 +23,7 @@
                             <button type="button" class="tab_showroom " data-num="${i.getIorder()}">${i.getItype()}</button>
                             </c:if>
                         </li>
-                     
+                     </c:if>
                         <!-- 타입 출력 끝-->
              </c:forEach>
                     </ul>
@@ -30,6 +31,7 @@
                 <div class="col-sm-12 col-xs-12">
                     <div class="iso-box">
                      <c:forEach items="${info}" var="i">
+                     <c:if test="${i.getIuse()=='O'}">
                         <div class="showroom" id="showroom_${i.getIorder()}">
                             <span><img src="${i.getIimagedir()}" class="img-responsive center-block" alt=""></span>
                             <div class="area-info col-sm-1">
@@ -54,6 +56,7 @@
                                 </ul>
                                </div>
                             </div>
+                            </c:if>
                                 </c:forEach>
                     </div>
                 </div>

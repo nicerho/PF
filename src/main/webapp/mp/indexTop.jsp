@@ -7,8 +7,8 @@
         <!--로그인 후 -->
          <c:if test="${loginMember!=null}">
         <li>${loginMember.getMname()}님 환영합니다 <a href="./logout">[로그아웃]</a></li>
-        <li>FAQ</li>
-        <li>공지사항</li>
+        <li><a href="./faq">FAQ</a></li>
+        <li><a href="./notice">공지사항</a></li>
         </c:if>
         <!-- 로그인 전 -->
         <c:if test="${loginMember==null}">

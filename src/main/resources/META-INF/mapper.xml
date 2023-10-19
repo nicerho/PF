@@ -3,7 +3,7 @@
 <mapper namespace="pfDB">
 	<insert id="adminInsert">
 		insert into admin
-		values('0',#{abranch},#{adep},#{apos},#{aid},#{aname},#{apw},#{aemail},#{atel},'Y',now());
+		values('0',#{abranch},#{adep},#{apos},#{aid},#{aname},#{apw},#{aemail},#{atel},'Y',0,now());
 	</insert>
 	<select id="login" resultType="ad" parameterType="string">
 		select * from

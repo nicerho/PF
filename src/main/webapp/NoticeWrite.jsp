@@ -28,7 +28,7 @@
        <li>공지제목</li>
        <li><input type="text" class="notice_in in1" name="ctitle"></li>
        <li>글쓴이</li>
-       <li><input type="text"  class="notice_in in2" readonly name="cwriter"></li> <li style="height:520px;">내용</li>
+       <li><input type="text"  class="notice_in in2" readonly value="${loginAdmin.getAname()}" name="cwriter"></li> <li style="height:520px;">내용</li>
        <li style="height:520px; padding-top: 10px;">
        <textarea class="notice_in in3" name="csection" id="texts"></textarea>
        </li>       

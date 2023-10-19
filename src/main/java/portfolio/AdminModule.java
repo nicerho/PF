@@ -23,6 +23,8 @@ public class AdminModule {
 	public int adminSubmit(String apw, AdminDTO ad) {
 		String pw = bp.encode(apw);
 		ad.setApw(pw);
+		System.out.println(ad.getAbranch());
+		System.out.println(ad.getAemail());
 		int a = sqlsession.insert("pfDB.adminInsert", ad);
 		if (a > 0) {
 			System.out.println("성공");
