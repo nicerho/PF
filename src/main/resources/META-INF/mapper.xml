@@ -157,6 +157,9 @@
 		insert into faq
 		values('0',#{fquestion},#{fanswer},#{fwriter},now());
 	</insert>
+	<select id="10faq" resultType="fd">
+	select * from faq order by fno desc limit 10;
+	</select>
 	<insert id="infoInsert">
 		insert into info
 		values('0',#{iwriter},#{ip1},#{ip2},#{ip3},#{ip4},#{iimagedir},#{iuse},#{iorder},now());

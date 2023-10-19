@@ -109,4 +109,8 @@ public class MemberModule {
 	public List<ReserveDTO> getReserveLimit() {
 		return sqlsession.selectList("pfDB.selectReserve20");
 	}
+	public List<FaqDTO> memberFaq(){
+		//10faq
+		return sqlsession.selectList("pfDB.10faq");
+	}
 }

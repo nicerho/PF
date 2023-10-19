@@ -14,13 +14,13 @@
         <c:if test="${loginMember==null}">
         <li><a href="./memberLogin.jsp">로그인</a></li>
         <li><a href="./joinAgree.jsp">회원가입</a></li>
-        <li>FAQ</li>
+        <li><a href="./faq">FAQ</a></li>
         <li><a href="./notice">공지사항</a></li>
         </c:if>
         </ul>
     </div>
         <div class="top">
-            <h1><a href="/" class="icon-hd-logo"></a></h1>
+            <h1><a href="./mainpage" class="icon-hd-logo"></a></h1>
             <nav id="gnb">
                 <li>
                     <a href=""><span>사업정보</span></a>

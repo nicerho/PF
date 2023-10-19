@@ -68,13 +68,14 @@
         </li>
         <li><em class="ck_font">■</em> 휴대전화번호</li>
         <li>
-        <input type="text" class="mbinput2" placeholder="숫자만 입력하세요" name="mtel">
-        <button type="button" class="mb_btn1">인증발송</button>
+        <input type="text" class="mbinput2" placeholder="숫자만 입력하세요" name="mtel" id="mtel">
+        <button type="button" class="mb_btn1" id="authCall">인증발송</button>
         </li>
         <li><em class="ck_font">■</em> 인증번호</li>
         <li>
-        <input type="text" class="mbinput2" placeholder="숫자 6자리를 입력하세요" maxlength="6">
-        <button type="button" class="mb_btn1">인증완료</button>
+        <input type="text" class="mbinput2" placeholder="숫자 6자리를 입력하세요" maxlength="6" id="authCode">
+        <input type="hidden" id="auth" value="N">
+        <button type="button" class="mb_btn1" id="authBtn">인증완료</button>
         </li>
         <li> 이메일</li>
         <li>
@@ -115,6 +116,6 @@
 </div>
     </div>
 </body>
-<script src="./js/memberJoin.js?v=7"></script>
+<script src="./js/memberJoin.js?v=8"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </html>

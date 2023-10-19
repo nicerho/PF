@@ -28,10 +28,12 @@ public class AdminController {
 
 	@GetMapping("/index")
 	public String adminIndex(@SessionAttribute(name = "loginAdmin", required = false) AdminDTO ad) {
+		
 		if (ad != null) {
 			return "redirect:adminMain";
 		}
-		return "/index";
+		
+		return "index";
 	}
 	@RequestMapping("/adminMain")
 	public String adminMain(Model model) {

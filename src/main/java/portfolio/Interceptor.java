@@ -14,10 +14,13 @@ public class Interceptor implements HandlerInterceptor {
 		response.setHeader("Pragma", "no-cache");
 		response.setHeader("Expires", "0");
 		HttpSession session = request.getSession(false); 
-		if (session == null) {
+		System.out.println(request.getRequestURL());
+		if (session == null ) {
 			response.sendRedirect("/portfolio/index");
 			return false; 
 		}
+		
+		//|| session.getAttribute("loginAdmin")==null
 		return true;
 	}
 

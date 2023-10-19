@@ -2,8 +2,15 @@ const mmarket1 = document.querySelector("#mmarket1");
 const mmarket2 = document.querySelector("#mmarket2");
 const mmarket3 = document.querySelector("#mmarket3");
 const mmarket4 = document.querySelector("#mmarket4");
-
-
+let auth = document.getElementById("auth").value;
+function asd() {
+	let str = '';
+	for (let i = 0; i < 6; i++) {
+		str += Math.floor(Math.random() * 10)
+	}
+	return str;
+}
+let number = asd();
 
 document.querySelector("#idck").addEventListener("click", function() {
 	this.mid = document.querySelector("#mid")
@@ -81,6 +88,43 @@ function sample6_execDaumPostcode() {
 		}
 	}).open();
 }
+document.getElementById("authCall").addEventListener("click", function() {
+
+	var tel = document.getElementById("mtel").value;
+	console.log("value = " + tel + " number = " + number)
+	fetch("./smsok", {
+		method: "POST",
+		cache: "no-cache",
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded"
+		},
+		body: "mtel=" + tel + "&number=" + number
+	}).then(function(response) {
+		return response.text();
+	}).then(function(result) {
+		if (result == "ok") {
+			alert("인증번호가 발송 되었습니다.")
+		}
+	}).catch(function(error) {
+		console.log("Data Error!!");
+		console.log(error)
+	});
+})
+
+document.getElementById("authBtn").addEventListener("click", function() {
+	const authCode = document.getElementById("authCode").value;
+
+	const authBtn = document.getElementById("authBtn")
+	if (authCode == number) {
+		
+		alert("인증이 완료되었습니다.")
+		auth = 'Y';
+		authBtn.innerHTML = "";
+		authBtn.innerHTML = "인증 완료";
+	} else {
+		alert("인증번호가 올바르지 않습니다. 다시 확인해주세요.")
+	}
+})
 
 function sub() {
 	if (document.getElementById("m1").checked == true) {
@@ -106,6 +150,8 @@ function sub() {
 		alert("동일한 패스워드를 입력해주세요.")
 	} else if (document.getElementById("sample6_postcode").value == "" || document.getElementById("sample6_address").value == "" || document.getElementById("sample6_detailAddress").value == "") {
 		alert("주소를 입력하셔야합니다.")
+	} else if(auth=="N"){
+		alert("휴대폰 인증을 완료하셔야 합니다.")
 	}
 	else {
 		memberSubmit.submit();
