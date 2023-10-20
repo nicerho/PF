@@ -16,8 +16,8 @@
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName"
 			value="com.mysql.jdbc.Driver"></property>
-		  <property name="url" value="jdbc:mysql://umj7-003.cafe24.com/wjswjdgh123"></property>  
-		 <!-- <property name="url" value="jdbc:mysql://localhost/wjswjdgh123"></property> --> 
+		 <!--  <property name="url" value="jdbc:mysql://umj7-003.cafe24.com/wjswjdgh123"></property> -->   
+		  <property name="url" value="jdbc:mysql://localhost/wjswjdgh123"></property> 
 		<property name="username" value="wjswjdgh123"></property>
 		<property name="password" value="qkdrn123!"></property>
 	</bean> 

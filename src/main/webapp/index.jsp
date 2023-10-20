@@ -22,6 +22,7 @@
           </div>
           <div class="adbt">
             <button type="button" class="loginbt1" id=loginTry>로그인</button>
+            <div>ID : test PW : test 입니다.</div>
             <button type="button" class="loginbt2" id="member_add">회원가입</button>
           </div>
           <div class="adinfomain">

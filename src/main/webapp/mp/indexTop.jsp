@@ -25,9 +25,9 @@
                 <li>
                     <a href=""><span>사업정보</span></a>
                     <ul>
-                        <li><a href="">지구안내</a></li>
-                        <li><a href="">입지안내</a></li>
-                        <li><a href="">지역조감도</a></li>
+                        <li><a href="./sub01.jsp">지구안내</a></li>
+                        <li><a href="./sub02.jsp">입지안내</a></li>
+                        <li><a href="./sub03.jsp">지역조감도</a></li>
                     </ul>
                 </li>
                 <li>

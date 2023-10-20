@@ -162,7 +162,7 @@
 	</select>
 	<insert id="infoInsert">
 		insert into info
-		values('0',#{iwriter},#{ip1},#{ip2},#{ip3},#{ip4},#{iimagedir},#{iuse},#{iorder},now());
+		values('0',#{iwriter},#{itype},#{ip1},#{ip2},#{ip3},#{ip4},#{iimagedir},#{iuse},#{iorder},now());
 	</insert>
 	<select id="selectInfoByPage" parameterType="map"
 		resultType="id">

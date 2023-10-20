@@ -52,6 +52,7 @@
                         <li><input type="password" class="login_input"  id="loginPw" name="loginPw" placeholder="패스워드를 입력하세요"></li>
                         <li><button type="button" class="login_btn1" id="loginTry">로그인</button></li>
                         <li><button type="button" class="login_btn2" onclick="location.href='./joinMember.jsp'">회원가입</button></li>
+                        <li>ID : testid PW : 123 입니다.</li>
                         <li style="cursor: pointer;">아이디 찾기 / 비밀번호 찾기</li>
                     </ol>
                 </span>

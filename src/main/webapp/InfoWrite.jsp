@@ -26,9 +26,9 @@
        <section class="data_listsview">
        <ol>
        <li>주거타입</li>
-       <li><input type="text" class="notice_in in2"> ※ 예) 74A 타입</li>
+       <li><input type="text" class="notice_in in2" name="itype"> ※ 예) 74A 타입</li>
        <li>글쓴이</li>
-       <li><input type="text" class="notice_in in2" name="iwriter" readonly></li> <li>주거전용</li>
+       <li><input type="text" class="notice_in in2" name="iwriter" readonly value="${loginAdmin.getAname()}"></li> <li>주거전용</li>
        <li><input type="text" class="notice_in in2" name="ip1">㎡&nbsp;&nbsp;&nbsp;※ 숫자만 입력하세요</li>
        <li>주거공용</li>
        <li><input type="text" class="notice_in in2" name="ip2">㎡&nbsp;&nbsp;&nbsp;※ 숫자만 입력하세요</li>

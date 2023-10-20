@@ -9,7 +9,19 @@ document.querySelector("#adm_ok").addEventListener("click", function() {
 	if (document.querySelector("#apw").value != document.querySelector("#pwCheck").value) {
 		alert("동일한 패스워드를 입력하세요")
 	} else if (checkResult == "N" || checkResult == "") {
-		alert("아이디를 다시 확인하세여")
+		alert("아이디를 다시 확인하세요")
+	}else if(document.querySelector("#aemail").value==""){
+		alert("이메일 입력은 필수입니다.")
+	} else if(document.querySelector("#apw").value==""){
+		alert("비밀번호 입력은 필수입니다.")
+	} else if(document.querySelector("#aid").value==""){
+		alert("아이디 입력은 필수입니다.")
+	} else if(document.querySelector("#adm2").value=="" || document.querySelector("#adm3").value==""){
+		alert("연락처 입력을 다시 확인해주세요.")
+	} else if(document.querySelector("#aname").value==""){
+		alert("이름 입력란을 다시 확인해주세요.")
+	} else if(document.querySelector("#adep").value==""||document.querySelector("#abranch").value==""||document.querySelector("#apos").value==""){
+		alert("소속,부서,직책 란을 다시 확인해주세요");
 	}
 	else {
 		f.submit();

@@ -39,7 +39,7 @@
                 </ul>
                 <ul class="memu">
                     <li class="memlisel1">
-                        <select class="kosel" name="abranch">
+                        <select class="kosel" name="abranch" id="abranch">
                             <option value="">부서선택</option>
                             <option value="임원">임원</option>
                             <option value="회계팀">회계팀</option>
@@ -55,10 +55,10 @@
               <div class="memsel1">
                 <ul class="memu">
                     <li class="memfont">이름</li>
-                    <li><input type="text" class="admamber1" id="" name="aname" value="" placeholder="이름을 입력해 주세요"></li>
+                    <li><input type="text" class="admamber1" id="aname" name="aname" value="" placeholder="이름을 입력해 주세요"></li>
                     <li class="memfont1">직책</li>
                     <li>
-                        <select class="kosel" name="apos">
+                        <select class="kosel" name="apos" id="apos">
                             <option value="">임원</option>
                             <option value="실장">실장</option>
                             <option value="팀장">팀장</option>
@@ -121,5 +121,5 @@
        </div>
     </form> 
 </body>
-<script src="./js/submit.js?v=4"></script>
+<script src="./js/submit.js?v=7"></script>
 </html>
